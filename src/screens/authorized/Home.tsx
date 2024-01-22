@@ -1,8 +1,10 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import PageLayout from "../../layouts/PageLayout";
+import moviesData from "../../../data.json";
 function Home() {
   return (
-    <Box flex={1}>
-      <Text>test</Text>
+    <Box>
+      <PageLayout label="Movies" data={moviesData} title="Movies" />
     </Box>
   );
 }

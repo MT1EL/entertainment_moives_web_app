@@ -1,7 +1,7 @@
 import { Box, Flex, Img, Input } from "@chakra-ui/react";
 import search from "../../assets/icon-search.svg";
 import Colors from "../../Colors.json";
-import CustomText from "../typography/CustomText";
+import Text from "../typography";
 function index({
   icon,
   err,
@@ -12,8 +12,21 @@ function index({
   placeholder: string;
 }) {
   return (
-    <Flex w="100%" gap="1.5rem" position={"relative"}>
-      {icon && <Img src={search} alt="search" alignSelf={"flex-start"} />}
+    <Flex
+      alignItems={"center"}
+      w="100%"
+      gap={["1rem", "1.5rem"]}
+      position={"relative"}
+    >
+      {icon && (
+        <Img
+          src={search}
+          alt="search"
+          // alignSelf={"flex-start"}
+          h={["1.5rem", "2rem", "2rem"]}
+          w={["1.5rem", "2rem", "2rem"]}
+        />
+      )}
       <Input
         variant={"flushed"}
         placeholder={placeholder}
@@ -22,12 +35,13 @@ function index({
         color={Colors["Pure-White"]}
         fontFamily={"'Outfit', sans-serif"}
         style={{ caretColor: Colors["red"] }}
+        h={["1.5rem", "2rem", "2rem"]}
       />
       {err && (
         <Box position={"absolute"} right={"0"} alignSelf={"center"}>
-          <CustomText size="bs" type="err">
+          <Text size="bs" type="err">
             can't be an empty
-          </CustomText>
+          </Text>
         </Box>
       )}
     </Flex>

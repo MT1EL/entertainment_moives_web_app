@@ -5,15 +5,16 @@ type TextStyles = {
   hm: { fontSize: string; fontWeight: string };
   hs: { fontSize: string; fontWeight: string };
   hxs: { fontSize: string; fontWeight: string };
+  hxxs: { fontSize: string; fontWeight: string };
   bm: { fontSize: string; fontWeight: string };
   bs: { fontSize: string; fontWeight: string; opacity?: string };
 };
-function CustomText({
+function index({
   children,
   size,
   type,
 }: {
-  children: string;
+  children: string | number;
   size: keyof TextStyles;
   type?: string;
 }) {
@@ -22,6 +23,7 @@ function CustomText({
     hm: { fontSize: "1.5rem", fontWeight: "300" },
     hs: { fontSize: "1.5rem", fontWeight: "500" },
     hxs: { fontSize: "1.125rem", fontWeight: "500" },
+    hxxs: { fontSize: ["0.875rem", "1.125rem"], fontWeight: "500" },
     bm: { fontSize: "15px", fontWeight: "300" },
     bs: { fontSize: "13px", fontWeight: "300", opacity: "0.75" },
   };
@@ -41,4 +43,4 @@ function CustomText({
   );
 }
 
-export default CustomText;
+export default index;

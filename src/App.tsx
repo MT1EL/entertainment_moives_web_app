@@ -1,5 +1,5 @@
-import { Box, Text } from "@chakra-ui/react";
-import CustomText from "./components/typography/CustomText";
+import { Box } from "@chakra-ui/react";
+import Text from "./components/typography";
 import Search from "./components/Search/index";
 import CustomButton from "./components/Button/index";
 function App() {
@@ -11,9 +11,7 @@ function App() {
       flexDir={"column"}
       gap="20px"
     >
-      <CustomText size="hl">
-        Whereas recognition of the inherent dignity
-      </CustomText>
+      <Text size="hl">Whereas recognition of the inherent dignity</Text>
 
       <CustomButton>Login to tour account</CustomButton>
     </Box>

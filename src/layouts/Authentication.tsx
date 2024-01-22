@@ -1,6 +1,6 @@
-import { Box, Flex, FormControl } from "@chakra-ui/react";
+import { Flex, FormControl } from "@chakra-ui/react";
 import Colors from "../Colors.json";
-import CustomText from "../components/typography/CustomText";
+import Text from "../components/typography";
 import Input from "../components/Search/index";
 import Button from "../components/Button/index";
 import { Link } from "react-router-dom";
@@ -32,18 +32,18 @@ function Authentication({
       w="400px"
       maxWidth={"100%"}
     >
-      <CustomText size="hl">{label}</CustomText>
+      <Text size="hl">{label}</Text>
       <FormControl gap="24px" display={"flex"} flexDir={"column"}>
         {inputs.map((input) => (
           <Input key={input.label} placeholder={input.label} />
         ))}
         <Button>{buttonLabel}</Button>
         <Flex gap="0.25rem" justifyContent={"center"}>
-          <CustomText size={"bm"}>{footer_paragraph}</CustomText>
+          <Text size={"bm"}>{footer_paragraph}</Text>
           <Link to={footer_link_href}>
-            <CustomText type="err" size={"bm"}>
+            <Text type="err" size={"bm"}>
               {footer_link}
-            </CustomText>
+            </Text>
           </Link>
         </Flex>
       </FormControl>
