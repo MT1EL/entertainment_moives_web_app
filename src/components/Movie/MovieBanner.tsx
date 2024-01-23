@@ -1,7 +1,6 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import Text from "../typography/";
 import Oval from "../Oval/";
-import img from "../../assets/thumbnails/112/regular/small.jpg";
 type MediaItem = {
   data: {
     title: string;
@@ -30,7 +29,7 @@ function MovieBanner({ data }: MediaItem) {
     <Box>
       <Box position={"relative"}>
         <Image
-          src={thumbnail.trending?.small}
+          src={thumbnail.regular?.large}
           alt="banner"
           maxW={["164px", "220px", "280px"]}
           borderRadius={"0.5rem"}
