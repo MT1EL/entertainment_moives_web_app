@@ -21,7 +21,7 @@ function Navbar() {
       justifyContent={"space-between"}
       w={["100%", "100%", "fit-content"]}
       flexDir={["row", "row", "column"]}
-      h={["fit-content", "fit-content", "100%"]}
+      h={["fit-content", "fit-content", "90vh"]}
       borderRadius={["0px", "10px", "1.25rem"]}
       alignItems={"center"}
     >

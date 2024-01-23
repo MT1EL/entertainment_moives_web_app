@@ -1,6 +1,9 @@
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image, Img } from "@chakra-ui/react";
 import Text from "../typography/";
 import Oval from "../Oval/";
+import Colors from "../../Colors.json";
+import bookmarkEmpty from "../../assets/icon-bookmark-empty.svg";
+import bookmarkFull from "../../assets/icon-bookmark-full.svg";
 type MediaItem = {
   data: {
     title: string;
@@ -34,6 +37,21 @@ function MovieBanner({ data }: MediaItem) {
           maxW={["164px", "220px", "280px"]}
           borderRadius={"0.5rem"}
         />
+        <Flex
+          w="2rem"
+          h="2rem"
+          borderRadius={"50%"}
+          bg={Colors["Dark-Blue"]}
+          _hover={{ backgroundColor: Colors["Greyish-Blue"] }}
+          position={"absolute"}
+          top="1rem"
+          right={"1rem"}
+          alignItems={"center"}
+          justifyContent={"center"}
+          cursor={"pointer"}
+        >
+          <Img src={bookmarkEmpty} alt="bookmark" />
+        </Flex>
       </Box>
       <Flex flexDir={"column"} gap="5px" marginTop={"0.5rem"}>
         <Flex gap="0.5rem" alignItems={"center"}>

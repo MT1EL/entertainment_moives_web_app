@@ -1,24 +1,13 @@
 import { Box } from "@chakra-ui/react";
 import PageLayout from "../../layouts/PageLayout";
-import Button from "../../components/Button";
-import { auth } from "../../../firebase";
 import { useEffect, useState } from "react";
-import { database } from "../../../firebase";
-import { getDocs } from "firebase/firestore";
-import { collection } from "firebase/firestore";
+import { getData } from "../../hooks/data";
+import { MediaItem } from "../../../types.ts";
 function Home() {
   const [data, setData] = useState<MediaItem[]>([]);
 
   useEffect(() => {
-    const ref = collection(database, "movies");
-    getDocs(ref)
-      .then((res) => {
-        let newArr: MediaItem[] = [];
-        res.forEach((doc) => newArr.push(doc.data() as MediaItem));
-        setData(newArr);
-      })
-      .catch((err) => console.log(err));
-    // return querySnapshot;
+    getData().then((res) => setData(res as MediaItem[]));
   }, []);
 
   if (data.length === 0) {
@@ -34,24 +23,3 @@ function Home() {
 }
 
 export default Home;
-
-type MediaItem = {
-  category: string;
-  isBookmarked: boolean;
-  isTrending: boolean;
-  rating: string;
-
-  thumbnail: {
-    regular: {
-      large: string;
-      medium: string;
-      small: string;
-    };
-    trending: {
-      large: string;
-      small: string;
-    };
-  };
-  title: string;
-  year: number;
-};
