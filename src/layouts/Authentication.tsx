@@ -6,11 +6,12 @@ import Button from "../components/Button/index";
 import { Link } from "react-router-dom";
 type AuthenticationLayoutProps = {
   label: string;
-  inputs: { label: string }[];
+  inputs: { label: string; name: string; setFunction: any }[];
   buttonLabel: string;
   footer_paragraph: string;
   footer_link: string;
   footer_link_href: string;
+  onSubmit: any;
 };
 function Authentication({
   label,
@@ -19,6 +20,7 @@ function Authentication({
   footer_paragraph,
   footer_link,
   footer_link_href,
+  onSubmit,
 }: AuthenticationLayoutProps) {
   return (
     <Flex
@@ -35,9 +37,14 @@ function Authentication({
       <Text size="hl">{label}</Text>
       <FormControl gap="24px" display={"flex"} flexDir={"column"}>
         {inputs.map((input) => (
-          <Input key={input.label} placeholder={input.label} />
+          <Input
+            key={input.label}
+            placeholder={input.label}
+            setFunction={input.setFunction}
+            name={input.name}
+          />
         ))}
-        <Button>{buttonLabel}</Button>
+        <Button onClick={onSubmit}>{buttonLabel}</Button>
         <Flex gap="0.25rem" justifyContent={"center"}>
           <Text size={"bm"}>{footer_paragraph}</Text>
           <Link to={footer_link_href}>

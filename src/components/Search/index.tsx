@@ -6,10 +6,14 @@ function index({
   icon,
   err,
   placeholder,
+  setFunction,
+  name,
 }: {
   icon?: boolean;
   err?: string;
   placeholder: string;
+  setFunction?: any;
+  name: string;
 }) {
   return (
     <Flex
@@ -36,6 +40,9 @@ function index({
         fontFamily={"'Outfit', sans-serif"}
         style={{ caretColor: Colors["red"] }}
         h={["1.5rem", "2rem", "2rem"]}
+        onChange={setFunction}
+        name={name}
+        id={name}
       />
       {err && (
         <Box position={"absolute"} right={"0"} alignSelf={"center"}>

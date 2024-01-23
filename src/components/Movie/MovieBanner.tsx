@@ -24,13 +24,13 @@ type MediaItem = {
   };
 };
 function MovieBanner({ data }: MediaItem) {
-  const { title, year, category, rating } = data;
+  const { thumbnail, title, year, category, rating } = data;
 
   return (
     <Box>
       <Box position={"relative"}>
         <Image
-          src={img}
+          src={thumbnail.trending?.small}
           alt="banner"
           maxW={["164px", "220px", "280px"]}
           borderRadius={"0.5rem"}

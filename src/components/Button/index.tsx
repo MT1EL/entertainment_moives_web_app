@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import Colors from "../../Colors.json";
 
-function index({ children }: { children: string }) {
+function index({ children, onClick }: { children: string; onClick: any }) {
   return (
     <Button
       w="100%"
@@ -13,6 +13,7 @@ function index({ children }: { children: string }) {
       fontFamily={"'Outfit', sans-serif"}
       fontSize={"15px"}
       fontWeight={"300"}
+      onClick={onClick}
     >
       {children}
     </Button>
