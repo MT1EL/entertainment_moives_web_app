@@ -1,4 +1,3 @@
-import React from "react";
 import movie from "../assets/Movie.svg";
 import { Box, Flex, Img } from "@chakra-ui/react";
 import Colors from "../Colors.json";
@@ -19,7 +18,7 @@ function Navbar() {
       p="1.75rem"
       bg={Colors["Semi-Dark-Blue"]}
       justifyContent={"space-between"}
-      w={["100%", "100%", "fit-content"]}
+      minW={["100%", "100%", "100px"]}
       flexDir={["row", "row", "column"]}
       h={["fit-content", "fit-content", "90vh"]}
       borderRadius={["0px", "10px", "1.25rem"]}

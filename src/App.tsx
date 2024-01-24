@@ -32,8 +32,9 @@ function App() {
     <Flex
       bg={Colors["Dark-Blue"]}
       color={Colors["Pure-White"]}
-      flex={1}
+      // flex={1}
       flexDir={["column", "column", "row"]}
+      overflow={"hidden"}
     >
       {authenticated && (
         <Box
@@ -43,7 +44,6 @@ function App() {
           <Navbar />
         </Box>
       )}
-
       <Container>
         <Box display={authenticated ? "block" : "none"}>
           <Input

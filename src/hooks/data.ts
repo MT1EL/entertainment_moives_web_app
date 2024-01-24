@@ -1,5 +1,5 @@
 import { database } from "../../firebase";
-import { getDocs } from "firebase/firestore";
+import { getDocs, query, where } from "firebase/firestore";
 import { collection } from "firebase/firestore";
 import { MediaItem } from "../../types.ts";
 
@@ -14,4 +14,16 @@ function getData() {
     .catch((err) => console.log(err));
 }
 
-export { getData };
+function getTrendings() {
+  const ref = collection(database, "movies");
+  const myQuery = query(ref, where("isTrending", "==", true));
+  return getDocs(myQuery)
+    .then((res) => {
+      let newArr: MediaItem[] = [];
+      res.forEach((doc) => newArr.push(doc.data() as MediaItem));
+      return newArr;
+    })
+    .catch((err) => console.log(err));
+}
+
+export { getData, getTrendings };

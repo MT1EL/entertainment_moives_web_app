@@ -1,6 +1,6 @@
 export type MediaItem = {
   category: string;
-  isBookmarked: boolean;
+  // isBookmarked: boolean;
   isTrending: boolean;
   rating: string;
 
@@ -10,11 +10,14 @@ export type MediaItem = {
       medium: string;
       small: string;
     };
-    trending: {
-      large: string;
-      small: string;
+    trending?: {
+      large?: string;
+      small?: string;
     };
   };
   title: string;
   year: number;
+};
+export type MediaItemAsData = {
+  data: MediaItem;
 };

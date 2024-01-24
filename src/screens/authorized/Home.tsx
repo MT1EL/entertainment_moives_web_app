@@ -1,23 +1,23 @@
 import { Box } from "@chakra-ui/react";
 import PageLayout from "../../layouts/PageLayout";
 import { useEffect, useState } from "react";
-import { getData } from "../../hooks/data";
+import { getData, getTrendings } from "../../hooks/data";
 import { MediaItem } from "../../../types.ts";
 function Home() {
   const [data, setData] = useState<MediaItem[]>([]);
-
+  const [trending, setTrending] = useState<MediaItem[]>([]);
   useEffect(() => {
     getData().then((res) => setData(res as MediaItem[]));
+    getTrendings().then((res) => setTrending(res as MediaItem[]));
   }, []);
-
   if (data.length === 0) {
     return <h1>loading</h1>;
   }
-
   return (
     <Box>
-      <PageLayout label="Movies" data={data} />
-      {/* <Button onClick={() => auth.signOut()}>Sign out</Button> */}
+      <PageLayout label="Trending" data={trending} trending />
+
+      <PageLayout label="Recommended for you" data={data} />
     </Box>
   );
 }

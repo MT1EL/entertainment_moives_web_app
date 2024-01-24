@@ -1,8 +1,17 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, Grid } from "@chakra-ui/react";
 import Text from "../components/typography";
 import MovieBanner from "../components/Movie/MovieBanner";
-
-function PageLayout({ label, data }: { label: string; data: MediaItem[] }) {
+import TrendingCarousel from "../components/shared/TrendingCarousel";
+import { MediaItem } from "../../types";
+function PageLayout({
+  label,
+  data,
+  trending,
+}: {
+  trending?: boolean;
+  label: string;
+  data: MediaItem[];
+}) {
   return (
     <Flex
       flexDir={"column"}
@@ -10,38 +19,25 @@ function PageLayout({ label, data }: { label: string; data: MediaItem[] }) {
       marginTop={["1.625rem", "2.25rem"]}
     >
       <Text size={"hl"}>{label}</Text>
-      <Flex
-        gap={["15px", "29px", "40px"]}
-        flexWrap={"wrap"}
-        justifyContent={["center", "flex-start"]}
-      >
-        {data.map((movie) => (
-          <MovieBanner data={movie} key={movie.title} />
-        ))}
-      </Flex>
+      {trending ? (
+        <TrendingCarousel data={data} />
+      ) : (
+        <Grid
+          gridTemplateColumns={[
+            "repeat(auto-fit, minmax(164px, 1fr))",
+            "repeat(auto-fit, minmax(220px, 1fr))",
+            "repeat(auto-fit, minmax(280px, 1fr))",
+          ]}
+          columnGap={"1rem"}
+          rowGap={"2rem"}
+        >
+          {data.map((movie) => (
+            <MovieBanner data={movie} key={movie.title} />
+          ))}
+        </Grid>
+      )}
     </Flex>
   );
 }
 
 export default PageLayout;
-
-type MediaItem = {
-  category: string;
-  isBookmarked: boolean;
-  isTrending: boolean;
-  rating: string;
-
-  thumbnail: {
-    regular: {
-      large: string;
-      medium: string;
-      small: string;
-    };
-    trending: {
-      large: string;
-      small: string;
-    };
-  };
-  title: string;
-  year: number;
-};
