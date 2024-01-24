@@ -26,4 +26,27 @@ function getTrendings() {
     .catch((err) => console.log(err));
 }
 
-export { getData, getTrendings };
+function getMovies() {
+  const ref = collection(database, "movies");
+  const myQuery = query(ref, where("category", "==", "Movie"));
+  return getDocs(myQuery)
+    .then((res) => {
+      let newArr: MediaItem[] = [];
+      res.forEach((doc) => newArr.push(doc.data() as MediaItem));
+      return newArr;
+    })
+    .catch((err) => console.log(err));
+}
+function getTvSeries() {
+  const ref = collection(database, "movies");
+  const myQuery = query(ref, where("category", "==", "TV Series"));
+  return getDocs(myQuery)
+    .then((res) => {
+      let newArr: MediaItem[] = [];
+      res.forEach((doc) => newArr.push(doc.data() as MediaItem));
+      return newArr;
+    })
+    .catch((err) => console.log(err));
+}
+
+export { getData, getTrendings, getMovies, getTvSeries };

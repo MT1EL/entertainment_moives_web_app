@@ -16,7 +16,7 @@ function MovieBanner({ data }: MediaItemAsData) {
         <Image
           src={thumbnail.regular?.large}
           alt="banner"
-          maxW={["164px", "220px", "280px"]}
+          maxW={["164px", "220px", "280px", "300px"]}
           borderRadius={"0.5rem"}
         />
         <Overlay trending={false} />

@@ -27,6 +27,7 @@ function PageLayout({
             "repeat(auto-fit, minmax(164px, 1fr))",
             "repeat(auto-fit, minmax(220px, 1fr))",
             "repeat(auto-fit, minmax(280px, 1fr))",
+            "repeat(auto-fit, minmax(300px, 1fr))",
           ]}
           columnGap={"1rem"}
           rowGap={"2rem"}

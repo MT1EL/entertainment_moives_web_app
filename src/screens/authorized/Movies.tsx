@@ -1,24 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MediaItem } from "../../../types";
-import { getData } from "../../hooks/data";
-import { Box } from "@chakra-ui/react";
+import { getMovies } from "../../hooks/data";
+import { Box, Spinner } from "@chakra-ui/react";
 import PageLayout from "../../layouts/PageLayout";
 
 function Movies() {
   const [data, setData] = useState<MediaItem[]>([]);
 
   useEffect(() => {
-    getData().then((res) => setData(res as MediaItem[]));
+    getMovies().then((res) => setData(res as MediaItem[]));
   }, []);
-
   if (data.length === 0) {
-    return <h1>loading</h1>;
+    return <Spinner size={"xl"} alignSelf={"center"} />;
   }
 
   return (
     <Box>
       <PageLayout label="Movies" data={data} />
-      {/* <Button onClick={() => auth.signOut()}>Sign out</Button> */}
     </Box>
   );
 }
