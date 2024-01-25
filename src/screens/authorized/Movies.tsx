@@ -1,22 +1,18 @@
-import { useEffect, useState } from "react";
-import { MediaItem } from "../../../types";
-import { getMovies } from "../../hooks/data";
+import { getTrendings } from "../../hooks/data";
 import { Box, Spinner } from "@chakra-ui/react";
+import { useQuery } from "react-query";
 import PageLayout from "../../layouts/PageLayout";
 
 function Movies() {
-  const [data, setData] = useState<MediaItem[]>([]);
+  const { data: trendingsData } = useQuery("TRENDING_MOVIES", getTrendings);
 
-  useEffect(() => {
-    getMovies().then((res) => setData(res as MediaItem[]));
-  }, []);
-  if (data.length === 0) {
+  if (!trendingsData) {
     return <Spinner size={"xl"} alignSelf={"center"} />;
   }
 
   return (
     <Box>
-      <PageLayout label="Movies" data={data} />
+      <PageLayout label="Movies" data={trendingsData} />
     </Box>
   );
 }

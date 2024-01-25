@@ -1,7 +1,7 @@
 import { Button } from "@chakra-ui/react";
 import Colors from "../../Colors.json";
-
-function index({ children, onClick }: { children: string; onClick: any }) {
+type buttonType = { children: string; onClick: any };
+function index({ children, onClick }: buttonType) {
   return (
     <Button
       w="100%"
@@ -9,7 +9,7 @@ function index({ children, onClick }: { children: string; onClick: any }) {
       bg={Colors["red"]}
       color={Colors["Pure-White"]}
       _hover={{ bg: Colors["Pure-White"], color: Colors["Semi-Dark-Blue"] }}
-      maxW="330px"
+      // maxW="330px"
       fontFamily={"'Outfit', sans-serif"}
       fontSize={"15px"}
       fontWeight={"300"}

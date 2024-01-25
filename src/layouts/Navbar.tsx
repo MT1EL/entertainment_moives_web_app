@@ -6,7 +6,9 @@ import movies from "../assets/icon-nav-movies.svg";
 import tv_series from "../assets/icon-nav-tv-series.svg";
 import bookmark from "../assets/icon-nav-bookmark.svg";
 import avatar from "../assets/image-avatar.png";
+import { auth } from "../../firebase";
 function Navbar() {
+  const isAuth = auth.currentUser;
   let navbarLinks = [
     { icon: home, href: "/" },
     { icon: movies, href: "/movies" },
@@ -51,14 +53,16 @@ function Navbar() {
           ))}
         </Flex>
       </Flex>
-      <Img
-        src={avatar}
-        alt="avatar"
-        border="1px solid #FFF"
-        borderRadius={"1.5rem"}
-        w={["1.5rem", "1.5rem", "2.5rem"]}
-        h={["1.5rem", "1.5rem", "2.5rem"]}
-      />
+      <Box as="a" href={isAuth ? "/profile" : "/login"}>
+        <Img
+          src={avatar}
+          alt="avatar"
+          border="1px solid #FFF"
+          borderRadius={"1.5rem"}
+          w={["1.5rem", "1.5rem", "2.5rem"]}
+          h={["1.5rem", "1.5rem", "2.5rem"]}
+        />
+      </Box>
     </Flex>
   );
 }

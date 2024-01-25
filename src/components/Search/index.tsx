@@ -8,11 +8,13 @@ function index({
   placeholder,
   setFunction,
   name,
+  handleBlur,
 }: {
   icon?: boolean;
   err?: string;
   placeholder: string;
   setFunction?: any;
+  handleBlur?: any;
   name: string;
 }) {
   return (
@@ -40,13 +42,14 @@ function index({
         fontFamily={"'Outfit', sans-serif"}
         style={{ caretColor: Colors["red"] }}
         h={["1.5rem", "2rem", "2rem"]}
-        onChange={setFunction}
         name={name}
         id={name}
+        onChange={setFunction}
+        onBlur={handleBlur}
       />
       {err && (
         <Box position={"absolute"} right={"0"} alignSelf={"center"}>
-          <Text size="bs" type="err">
+          <Text size="bs" color={Colors["red"]}>
             can't be an empty
           </Text>
         </Box>

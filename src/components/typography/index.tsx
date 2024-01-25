@@ -12,11 +12,11 @@ type TextStyles = {
 function index({
   children,
   size,
-  type,
+  color,
 }: {
   children: string | number;
   size: keyof TextStyles;
-  type?: string;
+  color?: string;
 }) {
   const textStyles = {
     hl: { fontSize: "2rem", fontWeight: "300" },
@@ -29,7 +29,7 @@ function index({
   };
   return (
     <Text
-      color={type === "err" ? Colors["red"] : Colors["Pure-White"]}
+      color={color ? color : Colors["Pure-White"]}
       fontFamily={"'Outfit', sans-serif"}
       fontSize={textStyles[size]?.fontSize}
       fontWeight={textStyles[size]?.fontWeight}

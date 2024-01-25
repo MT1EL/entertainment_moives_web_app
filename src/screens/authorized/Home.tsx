@@ -1,23 +1,22 @@
 import { Box, Spinner } from "@chakra-ui/react";
 import PageLayout from "../../layouts/PageLayout";
-import { useEffect, useState } from "react";
 import { getData, getTrendings } from "../../hooks/data";
-import { MediaItem } from "../../../types.ts";
+import { useQuery } from "react-query";
+import Button from "../../components/Button/";
+import { auth } from "../../../firebase";
 function Home() {
-  const [data, setData] = useState<MediaItem[]>([]);
-  const [trending, setTrending] = useState<MediaItem[]>([]);
-  useEffect(() => {
-    getData().then((res) => setData(res as MediaItem[]));
-    getTrendings().then((res) => setTrending(res as MediaItem[]));
-  }, []);
-  if (data.length === 0) {
+  const { data } = useQuery("ALL_MOVIES", getData);
+  const { data: trendingsData } = useQuery("TRENDING_MOVIES", getTrendings);
+
+  if (!data || !trendingsData) {
     return <Spinner size={"xl"} alignSelf={"center"} />;
   }
   return (
     <Box>
-      <PageLayout label="Trending" data={trending} trending />
+      <PageLayout label="Trending" data={trendingsData} trending />
 
       <PageLayout label="Recommended for you" data={data} />
+      <Button onClick={() => auth.signOut()}>Log out</Button>
     </Box>
   );
 }

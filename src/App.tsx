@@ -13,6 +13,8 @@ import Colors from "./Colors.json";
 import Container from "./layouts/Container.tsx";
 import Navbar from "./layouts/Navbar.tsx";
 import Input from "./components/Search/index.tsx";
+import Profile from "./screens/authorized/Profile.tsx";
+
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   useEffect(() => {
@@ -36,14 +38,12 @@ function App() {
       flexDir={["column", "column", "row"]}
       overflow={"hidden"}
     >
-      {authenticated && (
-        <Box
-          paddingBlock={["0rem", "1.5rem", "2rem"]}
-          paddingInline={["0rem", "1.5rem", "2rem"]}
-        >
-          <Navbar />
-        </Box>
-      )}
+      <Box
+        paddingBlock={["0rem", "1.5rem", "2rem"]}
+        paddingInline={["0rem", "1.5rem", "2rem"]}
+      >
+        <Navbar />
+      </Box>
       <Container>
         <Box display={authenticated ? "block" : "none"}>
           <Input
@@ -54,19 +54,15 @@ function App() {
         </Box>
 
         <Router>
-          {authenticated ? (
-            <Routes>
-              <Route path="/" Component={Home} />
-              <Route path="/movies" Component={Movies} />
-              <Route path="/tv_series" Component={TvSeries} />
-              <Route path="/bookmarks" Component={Bookmarks} />
-            </Routes>
-          ) : (
-            <Routes>
-              <Route path="/" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          )}
+          <Routes>
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/" Component={Home} />
+            <Route path="/movies" Component={Movies} />
+            <Route path="/tv_series" Component={TvSeries} />
+            <Route path="/bookmarks" Component={Bookmarks} />
+            <Route path="/profile" Component={Profile} />
+          </Routes>
         </Router>
       </Container>
     </Flex>
