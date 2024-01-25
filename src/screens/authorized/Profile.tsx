@@ -1,4 +1,14 @@
-import { Box, Flex, Img, Progress, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Img,
+  Spinner,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from "@chakra-ui/react";
 import Button from "../../components/Button/";
 import Text from "../../components/typography/";
 import Colors from "../../Colors.json";
@@ -8,7 +18,10 @@ import { getUser, updateUser } from "../../hooks/user";
 import { UserType } from "../../../types";
 import ProfileLayout from "../../layouts/ProfileLayout";
 import { profileInitialValues } from "../../../initialValues";
+import { useState } from "react";
+// import Tab from "../../components/shared/Tab/";
 function Profile() {
+  const [page, setPage] = useState("My Info");
   const { data } = useQuery<UserType>("USER", getUser);
   const formik = useFormik({
     initialValues: profileInitialValues,
@@ -51,7 +64,31 @@ function Profile() {
         </Box>
       </Flex>
       <Box maxW="600px">
-        <ProfileLayout formik={formik} data={data} />
+        <Tabs variant="unstyled" my="1rem">
+          <TabList my="1rem">
+            <Tab
+              borderRadius={"0.5rem"}
+              _selected={{ bg: Colors["Greyish-Blue"] }}
+            >
+              My Info
+            </Tab>
+            <Tab
+              borderRadius={"0.5rem"}
+              _selected={{ bg: Colors["Greyish-Blue"] }}
+            >
+              Settings
+            </Tab>
+          </TabList>
+          <TabPanels>
+            <TabPanel padding="0px">
+              <ProfileLayout formik={formik} data={data} />
+            </TabPanel>
+            <TabPanel padding="0px">
+              <h1>Setting</h1>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+
         <Button onClick={formik.handleSubmit}>Update Your Profile</Button>
       </Box>
     </Box>

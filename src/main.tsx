@@ -4,6 +4,7 @@ import "./assets/font/Outfit-Light.ttf";
 import "./assets/font/Outfit-Medium.ttf";
 import { ChakraProvider } from "@chakra-ui/react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import "./index.css";
 
 const queryClient = new QueryClient();
 import App from "./App.tsx";

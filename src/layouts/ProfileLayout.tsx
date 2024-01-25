@@ -29,16 +29,14 @@ function ProfileLayout({ formik, data }: any) {
   };
 
   return (
-    <Grid
-      marginBlock={"1rem"}
-      gridTemplateColumns={["1fr", "1fr 1fr"]}
-      gap="2rem"
-      maxW="600px"
-    >
+    <Grid gridTemplateColumns={["1fr", "1fr 1fr"]} gap="2rem" maxW="600px">
       {Object.keys(formik.initialValues).map((input) => (
         <GridItem
           key={input}
-          gridColumn={input === "name" || input === "surname" ? "" : "span 2"}
+          gridColumn={[
+            "span 2",
+            input === "name" || input === "surname" ? "" : "span 2",
+          ]}
         >
           {input === "profileImage" ? (
             <Flex flexDir={"column"} gap="1rem">
@@ -60,7 +58,7 @@ function ProfileLayout({ formik, data }: any) {
                   </Text>
                 </Flex>
               </FileUploader>
-              <Flex>
+              <Flex display={progress === 0 ? "none" : "flex"}>
                 <Box
                   w={`${progress}%`}
                   position={"relative"}

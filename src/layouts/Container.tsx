@@ -13,6 +13,7 @@ function Container({ children }: { children: ReactElement[] }) {
       flexDir={"column"}
       maxW="1600px"
       overflow={"hidden"}
+      w="100%"
     >
       {children}
     </Flex>

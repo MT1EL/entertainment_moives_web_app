@@ -1,18 +1,18 @@
-import { getTrendings } from "../../hooks/data";
+import { getMovies } from "../../hooks/data";
 import { Box, Spinner } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import PageLayout from "../../layouts/PageLayout";
 
 function Movies() {
-  const { data: trendingsData } = useQuery("TRENDING_MOVIES", getTrendings);
+  const { data } = useQuery("MOVIES", getMovies);
 
-  if (!trendingsData) {
+  if (!data) {
     return <Spinner size={"xl"} alignSelf={"center"} />;
   }
 
   return (
     <Box>
-      <PageLayout label="Movies" data={trendingsData} />
+      <PageLayout label="Movies" data={data} />
     </Box>
   );
 }
