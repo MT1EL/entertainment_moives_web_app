@@ -1,8 +1,18 @@
 import { Flex, Img } from "@chakra-ui/react";
 import Colors from "../../Colors.json";
 import bookmarkEmpty from "../../assets/icon-bookmark-empty.svg";
+import bookmarkedFull from "../../assets/icon-bookmark-full.svg";
+
 import Play from "../Button/Play";
-function Overlay({ trending }: { trending: boolean }) {
+function Overlay({
+  trending,
+  handleClick,
+  bookmarked,
+}: {
+  handleClick?: any;
+  trending: boolean;
+  bookmarked?: boolean;
+}) {
   return (
     <Flex
       position={"absolute"}
@@ -32,8 +42,9 @@ function Overlay({ trending }: { trending: boolean }) {
         alignItems={"center"}
         justifyContent={"center"}
         cursor={"pointer"}
+        onClick={() => handleClick()}
       >
-        <Img src={bookmarkEmpty} alt="bookmark" />
+        <Img src={bookmarked ? bookmarkedFull : bookmarkEmpty} alt="bookmark" />
       </Flex>
       <Play />
     </Flex>

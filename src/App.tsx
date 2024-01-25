@@ -17,6 +17,7 @@ import Profile from "./screens/authorized/Profile.tsx";
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
+
   useEffect(() => {
     const subscribe = onAuthStateChanged(auth, (user) => {
       if (user) {

@@ -1,5 +1,5 @@
 import movie from "../assets/Movie.svg";
-import { Box, Flex, Img } from "@chakra-ui/react";
+import { Box, Flex, Img, Spinner } from "@chakra-ui/react";
 import Colors from "../Colors.json";
 import home from "../assets/icon-nav-home.svg";
 import movies from "../assets/icon-nav-movies.svg";
@@ -8,13 +8,14 @@ import bookmark from "../assets/icon-nav-bookmark.svg";
 import avatar from "../assets/image-avatar.png";
 import { auth } from "../../firebase";
 function Navbar() {
-  const isAuth = auth.currentUser;
+  const currentUser = auth.currentUser;
   let navbarLinks = [
     { icon: home, href: "/" },
     { icon: movies, href: "/movies" },
     { icon: tv_series, href: "/tv_series" },
     { icon: bookmark, href: "/bookmarks" },
   ];
+
   return (
     <Flex
       p="1.75rem"
@@ -53,9 +54,9 @@ function Navbar() {
           ))}
         </Flex>
       </Flex>
-      <Box as="a" href={isAuth ? "/profile" : "/login"}>
+      <Box as="a" href={currentUser ? "/profile" : "/login"}>
         <Img
-          src={avatar}
+          src={currentUser ? currentUser.photoURL : avatar}
           alt="avatar"
           border="1px solid #FFF"
           borderRadius={"1.5rem"}

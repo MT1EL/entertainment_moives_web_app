@@ -11,9 +11,12 @@ function Login() {
       password: "",
     },
     onSubmit: (values) => {
-      useLogin(values.email, values.password)
-        .then((res) => navigate("/"))
-        .catch((err) => err);
+      useLogin(
+        values.email,
+        values.password,
+        () => navigate("/"),
+        () => formik.setErrors({ password: "wrong credentials" })
+      );
     },
   });
   return (
@@ -31,8 +34,9 @@ function Login() {
         buttonLabel={"Login to your account"}
         footer_paragraph={"Don't have an account?"}
         footer_link={"Sign Up"}
-        footer_link_href="/"
+        footer_link_href="/register"
         onSubmit={formik.handleSubmit}
+        error={formik.errors}
       />
     </Flex>
   );

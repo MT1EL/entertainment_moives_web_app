@@ -4,6 +4,7 @@ import Text from "../components/typography";
 import Input from "../components/Search/index";
 import Button from "../components/Button/index";
 import { Link } from "react-router-dom";
+import { FormikErrors } from "formik";
 type AuthenticationLayoutProps = {
   label: string;
   inputs: { label: string; name: string; setFunction: any }[];
@@ -12,6 +13,7 @@ type AuthenticationLayoutProps = {
   footer_link: string;
   footer_link_href: string;
   onSubmit: any;
+  error?: FormikErrors<{ email: string; password: string }>;
 };
 function Authentication({
   label,
@@ -21,6 +23,7 @@ function Authentication({
   footer_link,
   footer_link_href,
   onSubmit,
+  error,
 }: AuthenticationLayoutProps) {
   return (
     <Flex
@@ -44,6 +47,13 @@ function Authentication({
             name={input.name}
           />
         ))}
+        {error?.password && (
+          <Flex>
+            <Text color={Colors["red"]} size={"bm"}>
+              {error?.password}
+            </Text>
+          </Flex>
+        )}
         <Button onClick={onSubmit}>{buttonLabel}</Button>
         <Flex gap="0.25rem" justifyContent={"center"}>
           <Text size={"bm"}>{footer_paragraph}</Text>

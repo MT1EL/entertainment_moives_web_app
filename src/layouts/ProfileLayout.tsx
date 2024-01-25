@@ -27,7 +27,6 @@ function ProfileLayout({ formik, data }: any) {
       console.error("Invalid file object");
     }
   };
-
   return (
     <Grid gridTemplateColumns={["1fr", "1fr 1fr"]} gap="2rem" maxW="600px">
       {Object.keys(formik.initialValues).map((input) => (
@@ -35,7 +34,9 @@ function ProfileLayout({ formik, data }: any) {
           key={input}
           gridColumn={[
             "span 2",
-            input === "name" || input === "surname" ? "" : "span 2",
+            input === "displayName" || input === "phoneNumber"
+              ? "span 1"
+              : "span 2",
           ]}
         >
           {input === "profileImage" ? (

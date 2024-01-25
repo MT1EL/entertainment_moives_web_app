@@ -1,4 +1,4 @@
-import { UserType } from "./../../types";
+import { MediaItem, UserType } from "./../../types";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { uploadString } from "firebase/storage";
 import { database } from "../../firebase";
@@ -18,5 +18,12 @@ function updateUser(updatedUser: UserType) {
     .then((res) => console.log(res))
     .catch((err) => console.log(err));
 }
+function updateBookMark(updatedBookmarkList: MediaItem[]) {
+  const bookmarkRef = doc(database, "users", "MT1EL");
 
-export { getUser, updateUser };
+  return updateDoc(bookmarkRef, { bookmarkedMovies: updatedBookmarkList })
+    .then((res) => console.log("res:" + res))
+    .catch((err) => console.log(err));
+}
+
+export { getUser, updateUser, updateBookMark };

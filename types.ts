@@ -22,6 +22,17 @@ export type MediaItemAsData = {
   data: MediaItem;
 };
 
+// export type UserType = {
+//   data(): any;
+//   bookmarkedMovies: MediaItem[];
+//   email: string;
+//   fullName: string;
+//   name: string;
+//   profileImage: string;
+//   surname: string;
+//   username: string;
+// };
+
 export type UserType = {
   data(): any;
   bookmarkedMovies: MediaItem[];
@@ -31,4 +42,5 @@ export type UserType = {
   profileImage: string;
   surname: string;
   username: string;
+  phoneNumber: number;
 };
