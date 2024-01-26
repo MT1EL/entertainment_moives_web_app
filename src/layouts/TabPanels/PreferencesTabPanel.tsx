@@ -1,6 +1,5 @@
 import {
   TabPanel,
-  Box,
   Select,
   Flex,
   NumberInput,
@@ -10,13 +9,6 @@ import {
   NumberDecrementStepper,
   Switch,
   Divider,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  ModalFooter,
   useDisclosure,
 } from "@chakra-ui/react";
 import Button from "../../components/Button/";

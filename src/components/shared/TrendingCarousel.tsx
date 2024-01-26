@@ -39,7 +39,7 @@ function TrendingCarousel({ data }: any) {
       <Swiper {...swiperParams} style={{ maxWidth: "calc(100vw - 32px)" }}>
         {data.map((movie: MediaItem) => (
           <SwiperSlide key={movie.title}>
-            <TrendingMovieBanner data={movie} trending />
+            <TrendingMovieBanner data={movie} />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -9,7 +9,6 @@ function index({ children, onClick, bg }: buttonType) {
       bg={bg ? bg : Colors["red"]}
       color={Colors["Pure-White"]}
       _hover={{ bg: Colors["Pure-White"], color: Colors["Semi-Dark-Blue"] }}
-      // maxW="330px"
       fontFamily={"'Outfit', sans-serif"}
       fontSize={"15px"}
       fontWeight={"300"}

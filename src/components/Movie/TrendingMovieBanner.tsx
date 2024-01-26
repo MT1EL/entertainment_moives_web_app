@@ -4,13 +4,7 @@ import Oval from "../Oval/";
 import { MediaItem } from "../../../types";
 import Overlay from "../shared/Overlay";
 
-function TrendingMovieBanner({
-  data,
-  trending,
-}: {
-  data: MediaItem;
-  trending: boolean;
-}) {
+function TrendingMovieBanner({ data }: { data: MediaItem }) {
   const { thumbnail, title, year, category, rating } = data;
 
   return (
