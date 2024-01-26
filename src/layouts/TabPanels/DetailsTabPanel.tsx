@@ -6,8 +6,8 @@ import { useFormik } from "formik";
 import { AccountDetailsInitialValues } from "../../../initialValues";
 import { updateAuthUser } from "../../hooks/authentication";
 import { UserType } from "../../../types";
+import { showToast } from "../../components/shared/Toast";
 function DetailsTabPanel({ currentUser }: any) {
-  const toast = useToast();
   const formik = useFormik({
     initialValues: AccountDetailsInitialValues,
     onSubmit: (values) => {
@@ -25,7 +25,9 @@ function DetailsTabPanel({ currentUser }: any) {
             ? values.profileImage
             : currentUser?.photoURL,
       };
-      updateAuthUser(updatedObject as unknown as UserType);
+      updateAuthUser(updatedObject as unknown as UserType)
+        ?.then((res) => showToast("Profile updated succesfully", "success"))
+        .catch((err) => showToast("Error occured", "error"));
     },
   });
 

@@ -5,6 +5,7 @@ import Button from "../../components/Button/";
 import { useFormik } from "formik";
 import { AccountSecurityInitalValues } from "../../../initialValues";
 import { updateUserPassword } from "../../hooks/user";
+import { showToast } from "../../components/shared/Toast";
 function DetailsTabPanel({ currentUser }: any) {
   const toast = useToast();
   const formik = useFormik({
@@ -16,8 +17,8 @@ function DetailsTabPanel({ currentUser }: any) {
           values["OLD PASSWORD"],
           values["NEW PASSWORD"]
         )
-          .then((res) => res)
-          .catch((err) => err);
+          .then((res) => showToast("Account updates successfully", "success"))
+          .catch((err) => showToast("Error occured", "error"));
       } else {
         formik.setErrors({ "REPEAT NEW PASSWORD": "passwords should match" });
       }

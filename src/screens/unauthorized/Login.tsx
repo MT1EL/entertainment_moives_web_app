@@ -3,6 +3,7 @@ import { Flex } from "@chakra-ui/react";
 import { useLogin } from "../../hooks/authentication";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import { showToast } from "../../components/shared/Toast";
 function Login() {
   const navigate = useNavigate();
   const formik = useFormik({
@@ -16,7 +17,9 @@ function Login() {
         values.password,
         () => navigate("/"),
         () => formik.setErrors({ password: "wrong credentials" })
-      );
+      )
+        .then((res) => showToast("Loged in successfully", "success"))
+        .catch((err) => showToast("Wrong credentials", "error"));
     },
   });
   return (

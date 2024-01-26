@@ -23,7 +23,7 @@ const useLogin = (
   handleSucces: any,
   handleErr: any
 ) => {
-  signInWithEmailAndPassword(auth, email, password)
+  return signInWithEmailAndPassword(auth, email, password)
     .then(handleSucces)
     .catch(handleErr);
 };

@@ -26,7 +26,6 @@ function PreferencesTabPanel({ currentUser }: any) {
     auth.currentUser?.delete();
     deleteUser(currentUser?.uid);
     navigate("/");
-    console.log("done");
   };
   return (
     <TabPanel gap="1rem" display="flex" flexDir={"column"} maxW="400px" p="0">
