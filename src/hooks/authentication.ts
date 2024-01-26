@@ -5,6 +5,7 @@ import {
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
 import { addUser } from "./user";
+import { useToast } from "@chakra-ui/react";
 // Register a user
 const useRegister = async (email: string, password: string) => {
   try {
@@ -30,13 +31,11 @@ const useLogin = (
 function updateAuthUser(updatedUser: any) {
   const user = auth.currentUser;
   if (user) {
-    updateProfile(user, {
+    return updateProfile(user, {
       photoURL: updatedUser.profileImage,
       displayName: updatedUser.username,
     })
-      .then(() => {
-        console.log("Custom fields updated successfully!");
-      })
+      .then((res) => res)
       .catch((error: { message: any }) => {
         console.error("Error updating custom fields:", error.message);
       });

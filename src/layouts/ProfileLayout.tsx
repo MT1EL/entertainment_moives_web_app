@@ -7,7 +7,7 @@ import { useState } from "react";
 import { uploadFile } from "../hooks/storage/upload";
 function ProfileLayout({ formik, data }: any) {
   const [progress, setProgress] = useState(0);
-
+  const passwordTypes = ["OLD PASSWORD", "NEW PASSWORD", "REPEAT NEW PASSWORD"];
   const fileTypes = ["JPG", "PNG", "GIF"];
 
   const handleFileDrop = async (file: { type: any }) => {
@@ -83,7 +83,7 @@ function ProfileLayout({ formik, data }: any) {
               setFunction={formik.handleChange}
               handleBlur={() => formik.handleBlur}
               placeholder={data[input] ? data[input] : input}
-              type={"text"}
+              type={passwordTypes.includes(input) ? "password" : "text"}
             />
           )}
         </GridItem>

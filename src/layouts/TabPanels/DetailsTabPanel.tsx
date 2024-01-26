@@ -1,4 +1,4 @@
-import { TabPanel } from "@chakra-ui/react";
+import { TabPanel, useToast } from "@chakra-ui/react";
 import ProfileInfo from "../../components/shared/ProfileInfo";
 import ProfileLayout from "../ProfileLayout";
 import Button from "../../components/Button/";
@@ -7,6 +7,7 @@ import { AccountDetailsInitialValues } from "../../../initialValues";
 import { updateAuthUser } from "../../hooks/authentication";
 import { UserType } from "../../../types";
 function DetailsTabPanel({ currentUser }: any) {
+  const toast = useToast();
   const formik = useFormik({
     initialValues: AccountDetailsInitialValues,
     onSubmit: (values) => {
@@ -27,6 +28,7 @@ function DetailsTabPanel({ currentUser }: any) {
       updateAuthUser(updatedObject as unknown as UserType);
     },
   });
+
   return (
     <TabPanel gap="1rem" display="flex" flexDir={"column"} maxW="600px" p="0">
       <ProfileInfo currentUser={currentUser} />

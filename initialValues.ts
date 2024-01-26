@@ -10,7 +10,7 @@ export const AccountDetailsInitialValues = {
   profileImage: "",
 };
 
-export const AccountSecuiryInitialValues = {
+export const AccountSecurityInitalValues = {
   "OLD PASSWORD": "",
   "NEW PASSWORD": "",
   "REPEAT NEW PASSWORD": "",

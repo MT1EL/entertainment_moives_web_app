@@ -18,15 +18,23 @@ import Colors from "../../Colors.json";
 import { auth } from "../../../firebase";
 import WarningModal from "../../components/shared/WarningModal";
 import { useNavigate } from "react-router-dom";
+import { deleteUser } from "../../hooks/user";
 function PreferencesTabPanel({ currentUser }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
+  const handleDelete = () => {
+    auth.currentUser?.delete();
+    deleteUser(currentUser?.uid);
+    navigate("/");
+    console.log("done");
+  };
   return (
     <TabPanel gap="1rem" display="flex" flexDir={"column"} maxW="400px" p="0">
       <WarningModal
         isOpen={isOpen}
         onClose={onClose}
         currentUser={currentUser}
+        handleDelete={handleDelete}
       />
       <ProfileInfo currentUser={currentUser} />
       <Flex justifyContent={"space-between"}>
@@ -81,3 +89,6 @@ function PreferencesTabPanel({ currentUser }: any) {
 }
 
 export default PreferencesTabPanel;
+function navigate(arg0: string) {
+  throw new Error("Function not implemented.");
+}

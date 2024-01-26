@@ -1,6 +1,11 @@
 import { MediaItem, UserType } from "./../../types";
 import { doc, getDoc, updateDoc, setDoc, deleteDoc } from "firebase/firestore";
-import { database } from "../../firebase";
+import { auth, database } from "../../firebase";
+import {
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+  updatePassword,
+} from "firebase/auth";
 function addUser(id: string) {
   const ref = doc(database, "users", id);
   return setDoc(ref, { bookMarkedMovies: [] })
@@ -53,4 +58,33 @@ function deleteUser(id: string) {
     .catch((err) => console.log(err));
 }
 
-export { getUser, updateUser, updateBookMark, addUser, deleteUser };
+async function updateUserPassword(
+  user: any,
+  oldPassword: string,
+  newPassword: string
+) {
+  try {
+    const credential = EmailAuthProvider.credential(user?.email, oldPassword);
+
+    // Reauthenticate user with old credentials
+    await reauthenticateWithCredential(user, credential);
+
+    // Now that the user is reauthenticated, update the password
+    await updatePassword(user, newPassword);
+
+    console.log("Password updated successfully");
+    return true; // or some success indicator
+  } catch (error) {
+    console.error("Error updating password:", error);
+    return false; // or handle the error as needed
+  }
+}
+
+export {
+  getUser,
+  updateUser,
+  updateBookMark,
+  addUser,
+  deleteUser,
+  updateUserPassword,
+};

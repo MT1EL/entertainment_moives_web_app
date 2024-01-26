@@ -3,7 +3,9 @@ import Authentication from "../../layouts/Authentication";
 import { useRegister } from "../../hooks/authentication";
 import { useFormik } from "formik";
 import { addUser } from "../../hooks/user";
+import { useNavigate } from "react-router-dom";
 function Register() {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -13,7 +15,7 @@ function Register() {
     onSubmit: (values) => {
       if (values.password === values.repeatPassword) {
         useRegister(values.email, values.password)
-          .then((res) => res)
+          .then((res) => navigate("/"))
           .catch((err) => err);
       } else {
         console.log("password should be same");
