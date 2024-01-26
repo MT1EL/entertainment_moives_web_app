@@ -18,9 +18,6 @@ export type MediaItem = {
   title: string;
   year: number;
 };
-export type MediaItemAsData = {
-  data: MediaItem;
-};
 
 // export type UserType = {
 //   data(): any;

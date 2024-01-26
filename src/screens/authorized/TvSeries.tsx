@@ -2,7 +2,11 @@ import PageLayout from "../../layouts/PageLayout";
 import { Box, Spinner } from "@chakra-ui/react";
 import { getTvSeries } from "../../hooks/data";
 import { useQuery } from "react-query";
-function TvSeries() {
+import { getUser } from "../../hooks/user";
+function TvSeries({ id }: { id: string }) {
+  const { data: user, refetch } = useQuery("USER_BOOKMARKED", () =>
+    getUser(id)
+  );
   const { data: tvSeriesData } = useQuery("TRENDING_MOVIES", getTvSeries);
 
   if (!tvSeriesData) {
@@ -11,7 +15,13 @@ function TvSeries() {
 
   return (
     <Box>
-      <PageLayout label="TV Series" data={tvSeriesData} />
+      <PageLayout
+        label="TV Series"
+        data={tvSeriesData}
+        bookMarkedMovies={user ? user.bookMarkedMovies : []}
+        id={id}
+        refresh={refetch}
+      />
     </Box>
   );
 }

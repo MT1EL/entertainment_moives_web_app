@@ -11,7 +11,10 @@ import {
 import Button from "../Button/";
 import Text from "../typography";
 import Colors from "../../Colors.json";
+import { deleteUser } from "../../hooks/user";
+import { useNavigate } from "react-router-dom";
 const WarningModal = ({ isOpen, onClose, currentUser }: any) => {
+  const navigate = useNavigate();
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -41,7 +44,15 @@ const WarningModal = ({ isOpen, onClose, currentUser }: any) => {
           </Box>
 
           <Box>
-            <Button onClick={currentUser.delete()}>DELETE ACCOUNT</Button>
+            <Button
+              onClick={() => {
+                currentUser?.delete();
+                deleteUser(currentUser?.uid);
+                navigate("/");
+              }}
+            >
+              DELETE ACCOUNT
+            </Button>
           </Box>
         </ModalFooter>
       </ModalContent>

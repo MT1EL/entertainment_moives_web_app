@@ -17,9 +17,10 @@ import Text from "../../components/typography/";
 import Colors from "../../Colors.json";
 import { auth } from "../../../firebase";
 import WarningModal from "../../components/shared/WarningModal";
+import { useNavigate } from "react-router-dom";
 function PreferencesTabPanel({ currentUser }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const navigate = useNavigate();
   return (
     <TabPanel gap="1rem" display="flex" flexDir={"column"} maxW="400px" p="0">
       <WarningModal
@@ -66,7 +67,14 @@ function PreferencesTabPanel({ currentUser }: any) {
         </Flex>
       </Flex>
       <Divider />
-      <Button onClick={() => auth.signOut()}>Log out</Button>
+      <Button
+        onClick={() => {
+          auth.signOut();
+          navigate("/");
+        }}
+      >
+        Log out
+      </Button>
       <Button onClick={onOpen}>Delete Your Account</Button>
     </TabPanel>
   );

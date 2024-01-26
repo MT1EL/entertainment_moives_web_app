@@ -4,13 +4,20 @@ import Oval from "../Oval/";
 import { MediaItem } from "../../../types";
 import Overlay from "../shared/Overlay";
 
-function TrendingMovieBanner({ data }: { data: MediaItem }) {
+function TrendingMovieBanner({
+  data,
+  bookMarkHandler,
+  bookmarked,
+}: {
+  data: MediaItem;
+  bookMarkHandler: any;
+  bookmarked: boolean;
+}) {
   const { thumbnail, title, year, category, rating } = data;
 
   return (
     <Box
       position={"relative"}
-      // maxW={["240px", "470px"]}
       maxH={["140px", "230px"]}
       borderRadius={"0.5rem"}
       overflow={"hidden"}
@@ -28,7 +35,11 @@ function TrendingMovieBanner({ data }: { data: MediaItem }) {
           w="100%"
           h="100%"
         />
-        <Overlay trending />
+        <Overlay
+          trending
+          handleClick={bookMarkHandler}
+          bookmarked={bookmarked}
+        />
       </Box>
       <Flex
         position={"absolute"}

@@ -1,15 +1,15 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updatePhoneNumber,
 } from "firebase/auth";
 import { auth } from "../../firebase";
-import { UserType } from "../../types";
 import { updateProfile } from "firebase/auth";
+import { addUser } from "./user";
 // Register a user
 const useRegister = async (email: string, password: string) => {
   try {
     const user = await createUserWithEmailAndPassword(auth, email, password);
+    addUser(user.user.uid);
     return user;
   } catch (error) {
     return console.log(error);

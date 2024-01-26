@@ -1,28 +1,19 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import Text from "../typography/";
 import Oval from "../Oval/";
-import { MediaItemAsData } from "../../../types";
+import { MediaItem } from "../../../types";
 import Overlay from "../shared/Overlay";
-function MovieBanner({ data }: MediaItemAsData) {
+function MovieBanner({
+  data,
+  bookMarkHandler,
+  bookmarked,
+}: {
+  data: MediaItem;
+  bookMarkHandler: any;
+  bookmarked: boolean;
+}) {
   const { thumbnail, title, year, category, rating } = data;
-
-  // const { bookmarkedMovies } = user;
-  // const updatedBookmarkedMovies = bookmarkedMovies || [];
-  // const index = updatedBookmarkedMovies.indexOf(data);
-  // const handleBookMark = () => {
-  //   // Check if movieId already exists in the array
-
-  //   if (index !== -1) {
-  //     // Movie already exists, remove it from the array
-  //     updatedBookmarkedMovies.splice(index, 1);
-  //   } else {
-  //     // Movie does not exist, add it to the array
-  //     updatedBookmarkedMovies.push(data);
-  //   }
-
-  //   updateBookMark(updatedBookmarkedMovies);
-  // };
-
+  console.log(bookmarked);
   return (
     <Box position={"relative"} w="fit-content">
       <Box
@@ -39,8 +30,8 @@ function MovieBanner({ data }: MediaItemAsData) {
         />
         <Overlay
           trending={false}
-          // handleClick={handleBookMark}
-          // bookmarked={index !== -1}
+          handleClick={bookMarkHandler}
+          bookmarked={bookmarked}
         />
       </Box>
       <Flex flexDir={"column"} gap="5px" marginTop={"0.5rem"}>

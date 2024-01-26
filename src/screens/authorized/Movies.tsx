@@ -2,8 +2,12 @@ import { getMovies } from "../../hooks/data";
 import { Box, Spinner } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import PageLayout from "../../layouts/PageLayout";
+import { getUser } from "../../hooks/user";
 
-function Movies() {
+function Movies({ id }: { id: string }) {
+  const { data: user, refetch } = useQuery("USER_BOOKMARKED", () =>
+    getUser(id)
+  );
   const { data } = useQuery("MOVIES", getMovies);
 
   if (!data) {
@@ -11,9 +15,13 @@ function Movies() {
   }
 
   return (
-    <Box>
-      <PageLayout label="Movies" data={data} />
-    </Box>
+    <PageLayout
+      label="Movies"
+      data={data}
+      bookMarkedMovies={user ? user.bookMarkedMovies : []}
+      id={id}
+      refresh={refetch}
+    />
   );
 }
 

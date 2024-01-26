@@ -8,7 +8,7 @@ import Login from "./screens/unauthorized/Login.tsx";
 import Movies from "./screens/authorized/Movies.tsx";
 import TvSeries from "./screens/authorized/TvSeries.tsx";
 import Bookmarks from "./screens/authorized/Bookmarks.tsx";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Spinner } from "@chakra-ui/react";
 import Colors from "./Colors.json";
 import Container from "./layouts/Container.tsx";
 import Navbar from "./layouts/Navbar.tsx";
@@ -16,21 +16,20 @@ import Input from "./components/Search/index.tsx";
 import Profile from "./screens/authorized/Profile.tsx";
 
 function App() {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [user, setUser] = useState<boolean | any>("false");
 
   useEffect(() => {
     const subscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in
-        setAuthenticated(true);
+        setUser(user);
       } else {
         // User is signed out
-        setAuthenticated(false);
+        setUser(user);
       }
     });
     return subscribe;
   }, []);
-
   return (
     <Flex
       bg={Colors["Dark-Blue"]}
@@ -44,8 +43,9 @@ function App() {
       >
         <Navbar />
       </Box>
+
       <Container>
-        <Box display={authenticated ? "block" : "none"}>
+        <Box display={user ? "block" : "none"}>
           <Input
             placeholder={"Search for Movies or Tv Series"}
             icon
@@ -53,18 +53,30 @@ function App() {
             type="text"
           />
         </Box>
-
-        <Router>
-          <Routes>
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/" Component={Home} />
-            <Route path="/movies" Component={Movies} />
-            <Route path="/tv_series" Component={TvSeries} />
-            <Route path="/bookmarks" Component={Bookmarks} />
-            <Route path="/profile" Component={Profile} />
-          </Routes>
-        </Router>
+        {user === "false" ? (
+          <Spinner />
+        ) : (
+          <Router>
+            <Routes>
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/" element={<Home id={user?.uid} />} />
+              <Route path="/movies" element={<Movies id={user?.uid} />} />
+              <Route path="/tv_series" element={<TvSeries id={user?.uid} />} />
+              <Route
+                path="/bookmarks"
+                element={
+                  user === undefined || user === null ? (
+                    <h1>Please Log in</h1>
+                  ) : (
+                    <Bookmarks id={user?.uid} />
+                  )
+                }
+              />
+              <Route path="/profile" element={<Profile currentUser={user} />} />
+            </Routes>
+          </Router>
+        )}
       </Container>
     </Flex>
   );

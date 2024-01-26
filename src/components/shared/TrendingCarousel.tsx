@@ -6,7 +6,18 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import { useEffect, useState } from "react";
-function TrendingCarousel({ data }: any) {
+import { updateBookMark } from "../../hooks/user";
+function TrendingCarousel({
+  data,
+  bookMarkedMovies,
+  id,
+  refresh,
+}: {
+  data: any;
+  bookMarkedMovies: MediaItem[];
+  id: string;
+  refresh: any;
+}) {
   const [slidesPerView, setSlidesPerView] = useState(0);
 
   const handleResize = () => {
@@ -39,7 +50,19 @@ function TrendingCarousel({ data }: any) {
       <Swiper {...swiperParams} style={{ maxWidth: "calc(100vw - 32px)" }}>
         {data.map((movie: MediaItem) => (
           <SwiperSlide key={movie.title}>
-            <TrendingMovieBanner data={movie} />
+            <TrendingMovieBanner
+              data={movie}
+              bookMarkHandler={() => {
+                updateBookMark(bookMarkedMovies, id, movie)
+                  .then((res) => refresh())
+                  .catch((err) => err);
+              }}
+              bookmarked={
+                bookMarkedMovies.findIndex(
+                  (bookMarkedMovie) => bookMarkedMovie.title === movie.title
+                ) > -1
+              }
+            />
           </SwiperSlide>
         ))}
       </Swiper>

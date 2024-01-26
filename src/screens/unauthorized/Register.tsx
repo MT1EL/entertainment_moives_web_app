@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import Authentication from "../../layouts/Authentication";
 import { useRegister } from "../../hooks/authentication";
 import { useFormik } from "formik";
+import { addUser } from "../../hooks/user";
 function Register() {
   const formik = useFormik({
     initialValues: {
