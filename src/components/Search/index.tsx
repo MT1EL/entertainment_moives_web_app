@@ -16,6 +16,7 @@ function index({
   setFunction,
   name,
   handleBlur,
+  type,
 }: {
   icon?: boolean;
   err?: string;
@@ -23,6 +24,7 @@ function index({
   setFunction?: any;
   handleBlur?: any;
   name: string;
+  type: string;
 }) {
   return (
     <Flex
@@ -39,7 +41,7 @@ function index({
           w={["1.5rem", "2rem", "2rem"]}
         />
       )}
-      <InputGroup h="32px">
+      <InputGroup h={["24px", "32px"]}>
         <InputLeftAddon
           bg="transparent"
           h="100%"
@@ -63,13 +65,7 @@ function index({
           id={name}
           onChange={setFunction}
           onBlur={handleBlur}
-          type={
-            name === "phoneNumber"
-              ? "number"
-              : name === "Password"
-              ? "password"
-              : "text"
-          }
+          type={type}
         />
       </InputGroup>
       {err && (

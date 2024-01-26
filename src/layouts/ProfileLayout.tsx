@@ -34,7 +34,10 @@ function ProfileLayout({ formik, data }: any) {
           key={input}
           gridColumn={[
             "span 2",
-            input === "displayName" || input === "phoneNumber"
+            input === "displayName" ||
+            input === "phoneNumber" ||
+            input === "OLD PASSWORD" ||
+            input === "NEW PASSWORD"
               ? "span 1"
               : "span 2",
           ]}
@@ -80,6 +83,7 @@ function ProfileLayout({ formik, data }: any) {
               setFunction={formik.handleChange}
               handleBlur={() => formik.handleBlur}
               placeholder={data[input] ? data[input] : input}
+              type={"text"}
             />
           )}
         </GridItem>

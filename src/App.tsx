@@ -35,7 +35,6 @@ function App() {
     <Flex
       bg={Colors["Dark-Blue"]}
       color={Colors["Pure-White"]}
-      // flex={1}
       flexDir={["column", "column", "row"]}
       overflow={"hidden"}
     >
@@ -51,6 +50,7 @@ function App() {
             placeholder={"Search for Movies or Tv Series"}
             icon
             name={"movies"}
+            type="text"
           />
         </Box>
 

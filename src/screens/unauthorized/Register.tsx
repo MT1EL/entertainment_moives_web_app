@@ -24,16 +24,23 @@ function Register() {
       <Authentication
         label={"Sign Up"}
         inputs={[
-          { label: "email", name: "email", setFunction: formik.handleChange },
+          {
+            label: "email",
+            name: "email",
+            setFunction: formik.handleChange,
+            type: "email",
+          },
           {
             label: "Password",
             name: "password",
             setFunction: formik.handleChange,
+            type: "password",
           },
           {
             label: "Repeat Password",
             name: "repeatPassword",
             setFunction: formik.handleChange,
+            type: "password",
           },
         ]}
         buttonLabel={"Create an account"}

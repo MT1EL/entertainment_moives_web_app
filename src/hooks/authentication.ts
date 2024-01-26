@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updatePhoneNumber,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import { UserType } from "../../types";
@@ -26,9 +27,8 @@ const useLogin = (
     .catch(handleErr);
 };
 
-function updateAuthUser(updatedUser: UserType) {
+function updateAuthUser(updatedUser: any) {
   const user = auth.currentUser;
-
   if (user) {
     updateProfile(user, {
       photoURL: updatedUser.profileImage,

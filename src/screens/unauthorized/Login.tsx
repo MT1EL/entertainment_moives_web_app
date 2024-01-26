@@ -24,11 +24,17 @@ function Login() {
       <Authentication
         label={"Log In"}
         inputs={[
-          { label: "email", name: "email", setFunction: formik.handleChange },
+          {
+            label: "email",
+            name: "email",
+            setFunction: formik.handleChange,
+            type: "email",
+          },
           {
             label: "Password",
             name: "password",
             setFunction: formik.handleChange,
+            type: "password",
           },
         ]}
         buttonLabel={"Login to your account"}

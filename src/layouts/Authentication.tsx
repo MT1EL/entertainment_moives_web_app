@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { FormikErrors } from "formik";
 type AuthenticationLayoutProps = {
   label: string;
-  inputs: { label: string; name: string; setFunction: any }[];
+  inputs: { label: string; name: string; setFunction: any; type: string }[];
   buttonLabel: string;
   footer_paragraph: string;
   footer_link: string;
@@ -45,6 +45,7 @@ function Authentication({
             placeholder={input.label}
             setFunction={input.setFunction}
             name={input.name}
+            type={input.type}
           />
         ))}
         {error?.password && (
@@ -58,7 +59,7 @@ function Authentication({
         <Flex gap="0.25rem" justifyContent={"center"}>
           <Text size={"bm"}>{footer_paragraph}</Text>
           <Link to={footer_link_href}>
-            <Text type="err" size={"bm"}>
+            <Text size={"bm"} color={Colors["red"]}>
               {footer_link}
             </Text>
           </Link>

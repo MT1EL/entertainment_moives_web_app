@@ -1,13 +1,12 @@
-import { Flex, Spinner } from "@chakra-ui/react";
+import { TabPanel } from "@chakra-ui/react";
+import ProfileInfo from "../../components/shared/ProfileInfo";
+import ProfileLayout from "../ProfileLayout";
+import Button from "../../components/Button/";
 import { useFormik } from "formik";
-import { UserType } from "../../../types";
 import { AccountDetailsInitialValues } from "../../../initialValues";
 import { updateAuthUser } from "../../hooks/authentication";
-import { auth } from "../../../firebase";
-import { useEffect, useState } from "react";
-import ProfileNavigation from "../../layouts/ProfileNavigation";
-function Profile() {
-  const [currentUser, setCurrentUser] = useState(auth.currentUser);
+import { UserType } from "../../../types";
+function DetailsTabPanel({ currentUser }: any) {
   const formik = useFormik({
     initialValues: AccountDetailsInitialValues,
     onSubmit: (values) => {
@@ -28,18 +27,19 @@ function Profile() {
       updateAuthUser(updatedObject as unknown as UserType);
     },
   });
-  useEffect(() => {
-    const user = auth.currentUser;
-    setCurrentUser(user);
-  }, [auth.currentUser]);
-  if (!currentUser) {
-    return <Spinner size={"xl"} alignSelf={"center"} />;
-  }
   return (
-    <Flex flexDir={"column"} gap="1rem">
-      <ProfileNavigation formik={formik} currentUser={currentUser} />
-    </Flex>
+    <TabPanel gap="1rem" display="flex" flexDir={"column"} maxW="600px" p="0">
+      <ProfileInfo currentUser={currentUser} />
+
+      <ProfileLayout
+        formik={formik}
+        data={currentUser}
+        profileImage={currentUser?.photoURL}
+        username={currentUser?.displayName}
+      />
+      <Button onClick={formik.handleSubmit}>Update Your Profile</Button>
+    </TabPanel>
   );
 }
 
-export default Profile;
+export default DetailsTabPanel;

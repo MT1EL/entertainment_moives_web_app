@@ -1,5 +1,5 @@
 import movie from "../assets/Movie.svg";
-import { Box, Flex, Img, Spinner } from "@chakra-ui/react";
+import { Box, Flex, Img } from "@chakra-ui/react";
 import Colors from "../Colors.json";
 import home from "../assets/icon-nav-home.svg";
 import movies from "../assets/icon-nav-movies.svg";
