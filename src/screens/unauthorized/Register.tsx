@@ -2,9 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import Authentication from "../../layouts/Authentication";
 import { useRegister } from "../../hooks/authentication";
 import { useFormik } from "formik";
-import { addUser } from "../../hooks/user";
 import { useNavigate } from "react-router-dom";
-import { showToast } from "../../components/shared/Toast";
 function Register() {
   const navigate = useNavigate();
   const formik = useFormik({
@@ -16,11 +14,8 @@ function Register() {
     onSubmit: (values) => {
       if (values.password === values.repeatPassword) {
         useRegister(values.email, values.password)
-          .then((res) => {
-            navigate("/"), showToast("Registered successfully", "success");
-          })
+          .then((res) => navigate("/"))
           .catch((err) => {
-            showToast("Wrong credentials", "error");
             console.log(err);
           });
       } else {

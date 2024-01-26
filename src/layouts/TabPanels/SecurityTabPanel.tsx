@@ -1,13 +1,11 @@
-import { TabPanel, useToast } from "@chakra-ui/react";
+import { TabPanel } from "@chakra-ui/react";
 import ProfileInfo from "../../components/shared/ProfileInfo";
 import ProfileLayout from "../ProfileLayout";
 import Button from "../../components/Button/";
 import { useFormik } from "formik";
 import { AccountSecurityInitalValues } from "../../../initialValues";
 import { updateUserPassword } from "../../hooks/user";
-import { showToast } from "../../components/shared/Toast";
 function DetailsTabPanel({ currentUser }: any) {
-  const toast = useToast();
   const formik = useFormik({
     initialValues: AccountSecurityInitalValues,
     onSubmit: (values) => {
@@ -17,8 +15,8 @@ function DetailsTabPanel({ currentUser }: any) {
           values["OLD PASSWORD"],
           values["NEW PASSWORD"]
         )
-          .then((res) => showToast("Account updates successfully", "success"))
-          .catch((err) => showToast("Error occured", "error"));
+          .then((res) => res)
+          .catch((err) => err);
       } else {
         formik.setErrors({ "REPEAT NEW PASSWORD": "passwords should match" });
       }
