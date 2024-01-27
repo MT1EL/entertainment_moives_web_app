@@ -33,7 +33,6 @@ function ProfileLayout({ formik, data }: any) {
       console.error("Invalid file object");
     }
   };
-  console.log(Object.keys(formik.initialValues));
   return (
     <Grid
       gridTemplateColumns={["1fr", "1fr 1fr"]}
@@ -100,7 +99,11 @@ function ProfileLayout({ formik, data }: any) {
                   : input
               }
               type={passwordTypes.includes(input) ? "password" : "text"}
-              disabled={input === "email"}
+              disabled={
+                input === "email" ||
+                (input === "Phone Number" &&
+                  data[inputNameTranslator["Phone Number"]])
+              }
               error={formik.errors[input]}
               touched={formik.touched[input]}
             />

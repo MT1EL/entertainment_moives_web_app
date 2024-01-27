@@ -1,6 +1,10 @@
 import {
+  RecaptchaVerifier,
+  User,
   createUserWithEmailAndPassword,
+  linkWithPhoneNumber,
   signInWithEmailAndPassword,
+  signInWithPhoneNumber,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
@@ -50,4 +54,23 @@ const updateAuthUser = async (updatedUser: any) => {
     console.error("No user is curently signed in");
   }
 };
-export { useRegister, useLogin, updateAuthUser };
+
+const phoneAuthentication = (phone: string) => {
+  auth.languageCode = "ge";
+  const phoneWithCountryCode = "+995" + phone;
+  const recaptcha = new RecaptchaVerifier(auth, "recaptcha-modal", {
+    size: "invisible",
+  });
+  return linkWithPhoneNumber(
+    auth.currentUser as User,
+    phoneWithCountryCode,
+    recaptcha
+  )
+    .then((res) => {
+      console.log(res);
+      return res;
+    })
+    .catch((err) => console.log(err));
+};
+
+export { useRegister, useLogin, updateAuthUser, phoneAuthentication };
