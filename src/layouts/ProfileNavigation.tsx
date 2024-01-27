@@ -4,7 +4,7 @@ import PreferencesTabPanel from "./TabPanels/PreferencesTabPanel";
 import DetailsTabPanel from "./TabPanels/DetailsTabPanel";
 import SecurityTabPanel from "./TabPanels/SecurityTabPanel";
 import { useTranslation } from "react-i18next";
-function ProfileNavigation({ formik, currentUser }: any) {
+function ProfileNavigation({ currentUser }: any) {
   const { t } = useTranslation();
   const links = ["Account Details", "Account Security", "Preferences"];
 
@@ -32,8 +32,8 @@ function ProfileNavigation({ formik, currentUser }: any) {
         ))}
       </TabList>
       <TabPanels>
-        <DetailsTabPanel formik={formik} currentUser={currentUser} />
-        <SecurityTabPanel formik={formik} currentUser={currentUser} />
+        <DetailsTabPanel currentUser={currentUser} />
+        <SecurityTabPanel currentUser={currentUser} />
         <PreferencesTabPanel currentUser={currentUser} />
       </TabPanels>
     </Tabs>

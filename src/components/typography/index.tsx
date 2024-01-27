@@ -1,24 +1,9 @@
 import { Text } from "@chakra-ui/react";
 import Colors from "../../Colors.json";
 import { useTranslation } from "react-i18next";
-type TextStyles = {
-  hl: { fontSize: string; fontWeight: string };
-  hm: { fontSize: string; fontWeight: string };
-  hs: { fontSize: string; fontWeight: string };
-  hxs: { fontSize: string; fontWeight: string };
-  hxxs: { fontSize: string; fontWeight: string };
-  bm: { fontSize: string; fontWeight: string };
-  bs: { fontSize: string; fontWeight: string; opacity?: string };
-};
-function index({
-  children,
-  size,
-  color,
-}: {
-  children: string | number;
-  size: keyof TextStyles;
-  color?: string;
-}) {
+import { TextType } from "../../../types";
+
+function index({ children, size, color }: TextType) {
   const { t } = useTranslation();
   const textStyles = {
     hl: { fontSize: "2em", fontWeight: "300" },

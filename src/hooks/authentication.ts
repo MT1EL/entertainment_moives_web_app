@@ -5,11 +5,16 @@ import {
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
 import { addUser } from "./user";
-import { useToast } from "@chakra-ui/react";
+
 // Register a user
-const useRegister = async (email: string, password: string) => {
+const useRegister = async (
+  email: string,
+  password: string,
+  username: string
+) => {
   try {
     const user = await createUserWithEmailAndPassword(auth, email, password);
+    await updateAuthUser({ username });
     addUser(user.user.uid);
     return user;
   } catch (error) {
@@ -28,11 +33,13 @@ const useLogin = (
     .catch(handleErr);
 };
 
-function updateAuthUser(updatedUser: any) {
+const updateAuthUser = async (updatedUser: any) => {
+  const avatar =
+    "https://firebasestorage.googleapis.com/v0/b/entertainment-movies-app.appspot.com/o/profileimage%2Fdefault_avatar.png?alt=media&token=18236645-98e3-4119-a4ed-72df70b50d13";
   const user = auth.currentUser;
   if (user) {
-    return updateProfile(user, {
-      photoURL: updatedUser.profileImage,
+    return await updateProfile(user, {
+      photoURL: updatedUser.profileImage ? updatedUser.profileImage : avatar,
       displayName: updatedUser.username,
     })
       .then((res) => res)
@@ -42,6 +49,5 @@ function updateAuthUser(updatedUser: any) {
   } else {
     console.error("No user is curently signed in");
   }
-}
-
+};
 export { useRegister, useLogin, updateAuthUser };

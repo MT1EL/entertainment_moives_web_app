@@ -1,3 +1,11 @@
+:root {
+  --red: #fc4747;
+  --Dark-Blue: #10141e;
+  --Greyish-Blue: #5a698f;
+  --Semi-Dark-Blue: #161d2f;
+  --Pure-White: #fff;
+}
+
 body::-webkit-scrollbar {
   width: 10px;
   background-color: #10141e;

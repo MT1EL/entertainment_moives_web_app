@@ -5,10 +5,8 @@ import home from "../assets/icon-nav-home.svg";
 import movies from "../assets/icon-nav-movies.svg";
 import tv_series from "../assets/icon-nav-tv-series.svg";
 import bookmark from "../assets/icon-nav-bookmark.svg";
-import avatar from "../assets/image-avatar.png";
-import { auth } from "../../firebase";
-function Navbar() {
-  const currentUser = auth.currentUser;
+import avatar from "../assets/default_avatar.png";
+function Navbar({ user }: any) {
   let navbarLinks = [
     { icon: home, href: "/" },
     { icon: movies, href: "/movies" },
@@ -54,9 +52,9 @@ function Navbar() {
           ))}
         </Flex>
       </Flex>
-      <Box as="a" href={currentUser ? "/profile" : "/login"}>
+      <Box as="a" href={user ? "/profile" : "/login"}>
         <Img
-          src={currentUser ? currentUser.photoURL : avatar}
+          src={user ? user.photoURL : avatar}
           alt="avatar"
           border="1px solid #FFF"
           borderRadius={"1.5rem"}

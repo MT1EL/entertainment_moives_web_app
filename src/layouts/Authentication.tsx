@@ -1,30 +1,21 @@
-import { Flex, FormControl } from "@chakra-ui/react";
+import { Flex, FormControl, FormLabel } from "@chakra-ui/react";
 import Colors from "../Colors.json";
 import Text from "../components/typography";
 import Input from "../components/Search/index";
 import Button from "../components/Button/index";
 import { Link } from "react-router-dom";
-import { FormikErrors } from "formik";
-type AuthenticationLayoutProps = {
-  label: string;
-  inputs: { label: string; name: string; setFunction: any; type: string }[];
-  buttonLabel: string;
-  footer_paragraph: string;
-  footer_link: string;
-  footer_link_href: string;
-  onSubmit: any;
-  error?: FormikErrors<{ email: string; password: string }>;
-};
+import { AuthenticationLayoutProps } from "../../types";
+
 function Authentication({
   label,
-  inputs,
   buttonLabel,
   footer_paragraph,
   footer_link,
   footer_link_href,
   onSubmit,
-  error,
+  formik,
 }: AuthenticationLayoutProps) {
+  const passwordTypes = ["Password", "Repeat password"];
   return (
     <Flex
       flexDir={"column"}
@@ -38,23 +29,19 @@ function Authentication({
       maxWidth={"100%"}
     >
       <Text size="hl">{label}</Text>
-      <FormControl gap="24px" display={"flex"} flexDir={"column"}>
-        {inputs.map((input) => (
+      <Flex gap="24px" flexDir={"column"}>
+        {Object.keys(formik.initialValues).map((input) => (
           <Input
-            key={input.label}
-            placeholder={input.label}
-            setFunction={input.setFunction}
-            name={input.name}
-            type={input.type}
+            key={input}
+            placeholder={input}
+            setFunction={formik.handleChange}
+            name={input}
+            type={passwordTypes.includes(input) ? "password" : "email"}
+            error={formik.errors[input]}
+            handleBlur={formik.handleBlur}
+            touched={formik.touched[input]}
           />
         ))}
-        {error?.password && (
-          <Flex>
-            <Text color={Colors["red"]} size={"bm"}>
-              {error?.password}
-            </Text>
-          </Flex>
-        )}
         <Button onClick={onSubmit}>{buttonLabel}</Button>
         <Flex gap="0.25rem" justifyContent={"center"}>
           <Text size={"bm"}>{footer_paragraph}</Text>
@@ -64,7 +51,7 @@ function Authentication({
             </Text>
           </Link>
         </Flex>
-      </FormControl>
+      </Flex>
     </Flex>
   );
 }

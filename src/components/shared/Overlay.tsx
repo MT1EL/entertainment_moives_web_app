@@ -4,15 +4,8 @@ import bookmarkEmpty from "../../assets/icon-bookmark-empty.svg";
 import bookmarkedFull from "../../assets/icon-bookmark-full.svg";
 import Play from "../Button/Play";
 import { useState } from "react";
-function Overlay({
-  trending,
-  handleClick,
-  bookmarked,
-}: {
-  handleClick: any;
-  trending: boolean;
-  bookmarked?: boolean;
-}) {
+import { OverlayType } from "../../../types";
+function Overlay({ trending, handleClick, bookmarked }: OverlayType) {
   const [localBookmarked, setLocalBookmarked] = useState(bookmarked);
   return (
     <Flex

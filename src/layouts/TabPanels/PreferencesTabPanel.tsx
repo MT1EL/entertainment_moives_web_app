@@ -2,12 +2,6 @@ import {
   TabPanel,
   Select,
   Flex,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  Switch,
   Divider,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -62,7 +56,7 @@ function PreferencesTabPanel({ currentUser }: any) {
               value="ge"
               style={{ backgroundColor: Colors["Greyish-Blue"] }}
             >
-              Georgian
+              ქართული
             </option>
             <option
               style={{ backgroundColor: Colors["Greyish-Blue"] }}

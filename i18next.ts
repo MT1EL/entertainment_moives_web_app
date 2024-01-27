@@ -3,8 +3,8 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 // Import your translations
-import translations_en from "./locales/en.json";
-import translations_ge from "./locales/ge.json";
+import translations_en from "./src/locales/en.json";
+import translations_ge from "./src/locales/ge.json";
 const selectedLanguage = localStorage.getItem("i18nextLng");
 
 i18n

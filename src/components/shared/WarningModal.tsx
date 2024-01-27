@@ -11,7 +11,6 @@ import {
 import Button from "../Button/";
 import Text from "../typography";
 import Colors from "../../Colors.json";
-import { useTranslation } from "react-i18next";
 const WarningModal = ({ isOpen, onClose, handleDelete }: any) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

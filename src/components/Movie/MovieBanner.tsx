@@ -1,18 +1,10 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import Text from "../typography/";
 import Oval from "../Oval/";
-import { MediaItem } from "../../../types";
+import { MediaItem, MovieBannerType } from "../../../types";
 import Overlay from "../shared/Overlay";
 import { useTranslation } from "react-i18next";
-function MovieBanner({
-  data,
-  bookMarkHandler,
-  bookmarked,
-}: {
-  data: MediaItem;
-  bookMarkHandler: any;
-  bookmarked: boolean;
-}) {
+function MovieBanner({ data, bookMarkHandler, bookmarked }: MovieBannerType) {
   const { thumbnail, title, year, category, rating } = data;
   const { t } = useTranslation();
 

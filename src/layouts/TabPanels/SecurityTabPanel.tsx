@@ -3,26 +3,24 @@ import ProfileInfo from "../../components/shared/ProfileInfo";
 import ProfileLayout from "../ProfileLayout";
 import Button from "../../components/Button/";
 import { useFormik } from "formik";
-import { AccountSecurityInitalValues } from "../../../initialValues";
+import { AccountSecurityInitalValues } from "../../formData/initialValues";
 import { updateUserPassword } from "../../hooks/user";
+import { SecurityValidationSchema } from "../../formData/validationSchemas";
 function DetailsTabPanel({ currentUser }: any) {
+  const DetailsTabPanelSubmitFunction = (values: { [x: string]: string }) => {
+    updateUserPassword(
+      currentUser,
+      values["Old password"],
+      values["New password"]
+    )
+      .then((res) => res)
+      .catch((err) => err);
+  };
   const formik = useFormik({
     initialValues: AccountSecurityInitalValues,
-    onSubmit: (values) => {
-      if (values["NEW PASSWORD"] === values["REPEAT NEW PASSWORD"]) {
-        updateUserPassword(
-          currentUser,
-          values["OLD PASSWORD"],
-          values["NEW PASSWORD"]
-        )
-          .then((res) => res)
-          .catch((err) => err);
-      } else {
-        formik.setErrors({ "REPEAT NEW PASSWORD": "passwords should match" });
-      }
-    },
+    validationSchema: SecurityValidationSchema,
+    onSubmit: DetailsTabPanelSubmitFunction,
   });
-
   return (
     <TabPanel p="0" display={"flex"} flexDir={"column"} gap="0.5rem">
       <ProfileInfo currentUser={currentUser} />

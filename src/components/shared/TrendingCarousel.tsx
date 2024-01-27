@@ -1,4 +1,4 @@
-import { MediaItem } from "../../../types";
+import { MediaItem, TrendingCarouselType } from "../../../types";
 import TrendingMovieBanner from "../Movie/TrendingMovieBanner";
 import { Box } from "@chakra-ui/react";
 // Import Swiper React components
@@ -12,16 +12,10 @@ function TrendingCarousel({
   bookMarkedMovies,
   id,
   refresh,
-}: {
-  data: any;
-  bookMarkedMovies: MediaItem[];
-  id: string;
-  refresh: any;
-}) {
+}: TrendingCarouselType) {
   const [slidesPerView, setSlidesPerView] = useState(0);
 
   const handleResize = () => {
-    console.log(window.innerWidth);
     if (window.innerWidth <= 768) {
       setSlidesPerView(1);
     } else if (window.innerWidth <= 1024) {

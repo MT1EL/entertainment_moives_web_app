@@ -1,7 +1,7 @@
 import { Flex, Grid } from "@chakra-ui/react";
 import Text from "../components/typography";
 import TrendingCarousel from "../components/shared/TrendingCarousel";
-import { MediaItem } from "../../types";
+import { PageLayoutType } from "../../types";
 import MovieBanner from "../components/Movie/MovieBanner";
 import { updateBookMark } from "../hooks/user";
 function PageLayout({
@@ -11,14 +11,7 @@ function PageLayout({
   bookMarkedMovies,
   refresh,
   id,
-}: {
-  trending?: boolean;
-  label: string;
-  data: MediaItem[];
-  bookMarkedMovies: MediaItem[];
-  id: string;
-  refresh: any;
-}) {
+}: PageLayoutType) {
   return (
     <Flex
       flexDir={"column"}

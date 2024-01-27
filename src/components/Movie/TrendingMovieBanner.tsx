@@ -1,7 +1,7 @@
 import { Box, Flex, Img } from "@chakra-ui/react";
 import Text from "../typography/";
 import Oval from "../Oval/";
-import { MediaItem } from "../../../types";
+import { MovieBannerType } from "../../../types";
 import Overlay from "../shared/Overlay";
 import { useTranslation } from "react-i18next";
 
@@ -9,11 +9,7 @@ function TrendingMovieBanner({
   data,
   bookMarkHandler,
   bookmarked,
-}: {
-  data: MediaItem;
-  bookMarkHandler: any;
-  bookmarked: boolean;
-}) {
+}: MovieBannerType) {
   const { thumbnail, title, year, category, rating } = data;
   const { t } = useTranslation();
 

@@ -31,54 +31,64 @@ function App() {
     return subscribe;
   }, []);
   return (
-    <Flex
+    <Box
       bg={Colors["Dark-Blue"]}
       color={Colors["Pure-White"]}
-      flexDir={["column", "column", "row"]}
       overflow={"hidden"}
     >
-      <Box
-        paddingBlock={["0rem", "1.5rem", "2rem"]}
-        paddingInline={["0rem", "1.5rem", "2rem"]}
-      >
-        <Navbar />
-      </Box>
-
-      <Container>
-        <Box display={user ? "block" : "none"}>
-          <Input
-            placeholder={"Search for Movies or Tv Series"}
-            icon
-            name={"movies"}
-            type="text"
-          />
-        </Box>
+      <Flex flexDir={["column", "column", "row"]} flex={1}>
         {user === "false" ? (
           <Spinner />
         ) : (
-          <Router>
-            <Routes>
-              <Route path="/register" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/" element={<Home id={user?.uid} />} />
-              <Route path="/movies" element={<Movies id={user?.uid} />} />
-              <Route path="/tv_series" element={<TvSeries id={user?.uid} />} />
-              <Route
-                path="/bookmarks"
-                element={
-                  user === undefined || user === null ? (
-                    <h1>Please Log in</h1>
-                  ) : (
-                    <Bookmarks id={user?.uid} />
-                  )
-                }
-              />
-              <Route path="/profile" element={<Profile currentUser={user} />} />
-            </Routes>
-          </Router>
+          <>
+            <Box
+              paddingBlock={["0rem", "1.5rem", "2rem"]}
+              paddingInline={["0rem", "1.5rem", "2rem"]}
+            >
+              <Navbar user={user} />
+            </Box>
+
+            <Container>
+              <Box display={user ? "block" : "none"}>
+                <Input
+                  placeholder={"Search for Movies or Tv Series"}
+                  icon
+                  name={"movies"}
+                  type="text"
+                />
+              </Box>
+
+              <Router>
+                <Routes>
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/" element={<Home id={user?.uid} />} />
+                  <Route path="/movies" element={<Movies id={user?.uid} />} />
+                  <Route
+                    path="/tv_series"
+                    element={<TvSeries id={user?.uid} />}
+                  />
+                  <Route
+                    path="/bookmarks"
+                    element={
+                      user === undefined || user === null ? (
+                        <h1>Please Log in</h1>
+                      ) : (
+                        <Bookmarks id={user?.uid} />
+                      )
+                    }
+                  />
+                  <Route
+                    path="/profile"
+                    element={<Profile currentUser={user} />}
+                  />
+                </Routes>
+              </Router>
+            </Container>
+          </>
         )}
-      </Container>
-    </Flex>
+      </Flex>
+    </Box>
   );
 }
 
