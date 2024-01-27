@@ -9,6 +9,7 @@ import {
 import search from "../../assets/icon-search.svg";
 import Colors from "../../Colors.json";
 import Text from "../typography";
+import { useTranslation } from "react-i18next";
 function index({
   icon,
   err,
@@ -26,6 +27,7 @@ function index({
   name: string;
   type: string;
 }) {
+  const { t } = useTranslation();
   return (
     <Flex
       alignItems={"center"}
@@ -54,7 +56,7 @@ function index({
         </InputLeftAddon>
         <Input
           variant={"flushed"}
-          placeholder={placeholder}
+          placeholder={t(placeholder)}
           borderColor={icon ? "transparent" : Colors["Greyish-Blue"]}
           focusBorderColor={err ? Colors["red"] : Colors["Greyish-Blue"]}
           color={Colors["Pure-White"]}
@@ -66,6 +68,7 @@ function index({
           onChange={setFunction}
           onBlur={handleBlur}
           type={type}
+          fontSize={["0.8rem", "1rem", "1.2rem"]}
         />
       </InputGroup>
       {err && (

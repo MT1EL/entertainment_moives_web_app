@@ -1,5 +1,6 @@
 import { Text } from "@chakra-ui/react";
 import Colors from "../../Colors.json";
+import { useTranslation } from "react-i18next";
 type TextStyles = {
   hl: { fontSize: string; fontWeight: string };
   hm: { fontSize: string; fontWeight: string };
@@ -18,12 +19,13 @@ function index({
   size: keyof TextStyles;
   color?: string;
 }) {
+  const { t } = useTranslation();
   const textStyles = {
-    hl: { fontSize: "2rem", fontWeight: "300" },
-    hm: { fontSize: "1.5rem", fontWeight: "300" },
-    hs: { fontSize: "1.5rem", fontWeight: "500" },
-    hxs: { fontSize: "1.125rem", fontWeight: "500" },
-    hxxs: { fontSize: ["0.875rem", "1.125rem"], fontWeight: "500" },
+    hl: { fontSize: "2em", fontWeight: "300" },
+    hm: { fontSize: "1.5em", fontWeight: "300" },
+    hs: { fontSize: "1.5em", fontWeight: "500" },
+    hxs: { fontSize: "1.125em", fontWeight: "500" },
+    hxxs: { fontSize: ["0.875em", "1.125em"], fontWeight: "500" },
     bm: { fontSize: "15px", fontWeight: "300" },
     bs: { fontSize: "13px", fontWeight: "300", opacity: "0.75" },
   };
@@ -38,7 +40,7 @@ function index({
       fontStyle={"normal"}
       opacity={size === "bs" ? textStyles[size]?.opacity : "1"}
     >
-      {children}
+      {t(children as string)}
     </Text>
   );
 }

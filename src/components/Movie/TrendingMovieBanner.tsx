@@ -3,6 +3,7 @@ import Text from "../typography/";
 import Oval from "../Oval/";
 import { MediaItem } from "../../../types";
 import Overlay from "../shared/Overlay";
+import { useTranslation } from "react-i18next";
 
 function TrendingMovieBanner({
   data,
@@ -14,6 +15,7 @@ function TrendingMovieBanner({
   bookmarked: boolean;
 }) {
   const { thumbnail, title, year, category, rating } = data;
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -52,11 +54,11 @@ function TrendingMovieBanner({
         <Flex gap="0.5rem" alignItems={"center"}>
           <Text size={"bs"}>{year}</Text>
           <Oval />
-          <Text size={"bs"}>{category}</Text>
+          <Text size={"bs"}>{t(category)}</Text>
           <Oval />
           <Text size={"bs"}>{rating}</Text>
         </Flex>
-        <Text size="hxxs">{title}</Text>
+        <Text size="hxxs">{t(title)}</Text>
       </Flex>
     </Box>
   );

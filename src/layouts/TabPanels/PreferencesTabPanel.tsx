@@ -19,16 +19,26 @@ import { auth } from "../../../firebase";
 import WarningModal from "../../components/shared/WarningModal";
 import { useNavigate } from "react-router-dom";
 import { deleteUser } from "../../hooks/user";
+import i18n from "../../../i18next";
 function PreferencesTabPanel({ currentUser }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   const navigate = useNavigate();
   const handleDelete = () => {
     auth.currentUser?.delete();
     deleteUser(currentUser?.uid);
     navigate("/");
   };
+
   return (
-    <TabPanel gap="1rem" display="flex" flexDir={"column"} maxW="400px" p="0">
+    <TabPanel
+      gap="1rem"
+      display="flex"
+      flexDir={"column"}
+      p="0"
+      w="600px"
+      maxW={"100%"}
+    >
       <WarningModal
         isOpen={isOpen}
         onClose={onClose}
@@ -37,40 +47,30 @@ function PreferencesTabPanel({ currentUser }: any) {
       />
       <ProfileInfo currentUser={currentUser} />
       <Flex justifyContent={"space-between"}>
-        <Flex gap="0.5rem" flexDir={"column"} w="60%">
+        <Flex gap="0.5rem" flexDir={"column"} w="55%">
           <Text size="hs">Language</Text>
-          <Select defaultValue={"GEORGIAN"} maxW="300px" cursor={"pointer"}>
+          <Select
+            defaultValue={i18n.language}
+            maxW="300px"
+            cursor={"pointer"}
+            onChange={(e) => {
+              i18n.changeLanguage(e.target.value),
+                localStorage.setItem("i18nextLng", e.target.value);
+            }}
+          >
             <option
-              value="Georgian"
+              value="ge"
               style={{ backgroundColor: Colors["Greyish-Blue"] }}
             >
               Georgian
             </option>
             <option
               style={{ backgroundColor: Colors["Greyish-Blue"] }}
-              value="English"
+              value="en"
             >
               English
             </option>
           </Select>
-        </Flex>
-        <Flex gap="0.5rem" flexDir={"column"} w="30%">
-          <Text size="hs">FontSize</Text>
-          <NumberInput defaultValue={16} min={10} max={20}>
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-        </Flex>
-      </Flex>
-      <Flex gap="0.5rem" flexDir={"column"}>
-        <Text size="hs">Theme</Text>
-        <Flex alignItems={"center"} gap="0.5rem">
-          <Text size="hxs">Light</Text>
-          <Switch size={"lg"} colorScheme={"cyan"} />{" "}
-          <Text size="hxs">Dark</Text>
         </Flex>
       </Flex>
       <Divider />

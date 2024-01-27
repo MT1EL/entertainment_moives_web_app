@@ -1,8 +1,11 @@
 import { Flex, Img } from "@chakra-ui/react";
 import Text from "../typography/";
 import play from "../../assets/icon-play.svg";
+import { useTranslation } from "react-i18next";
 
 function Play() {
+  const { t } = useTranslation();
+
   return (
     <Flex
       position={"absolute"}
@@ -18,7 +21,7 @@ function Play() {
       transition={"bottom 300ms ease"}
     >
       <Img src={play} alt="play" />
-      <Text size="hxxs">Play</Text>
+      <Text size="hxxs">{t("Play")}</Text>
     </Flex>
   );
 }

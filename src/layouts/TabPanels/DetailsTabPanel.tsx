@@ -31,7 +31,7 @@ function DetailsTabPanel({ currentUser }: any) {
   });
 
   return (
-    <TabPanel gap="1rem" display="flex" flexDir={"column"} maxW="600px" p="0">
+    <TabPanel gap="1rem" display="flex" flexDir={"column"} p="0">
       <ProfileInfo currentUser={currentUser} />
 
       <ProfileLayout

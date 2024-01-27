@@ -24,13 +24,7 @@ function DetailsTabPanel({ currentUser }: any) {
   });
 
   return (
-    <TabPanel
-      p="0"
-      maxW="600px"
-      display={"flex"}
-      flexDir={"column"}
-      gap="0.5rem"
-    >
+    <TabPanel p="0" display={"flex"} flexDir={"column"} gap="0.5rem">
       <ProfileInfo currentUser={currentUser} />
       <ProfileLayout
         formik={formik}

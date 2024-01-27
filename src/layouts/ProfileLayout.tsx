@@ -28,12 +28,17 @@ function ProfileLayout({ formik, data }: any) {
     }
   };
   return (
-    <Grid gridTemplateColumns={["1fr", "1fr 1fr"]} gap="2rem" maxW="600px">
+    <Grid
+      gridTemplateColumns={["1fr", "1fr 1fr"]}
+      gap="2rem"
+      w="600px"
+      maxW="100%"
+    >
       {Object.keys(formik.initialValues).map((input) => (
         <GridItem
           key={input}
           gridColumn={[
-            "span 2",
+            "span 1",
             input === "displayName" ||
             input === "phoneNumber" ||
             input === "OLD PASSWORD" ||

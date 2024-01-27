@@ -3,17 +3,20 @@ import Colors from "../Colors.json";
 import PreferencesTabPanel from "./TabPanels/PreferencesTabPanel";
 import DetailsTabPanel from "./TabPanels/DetailsTabPanel";
 import SecurityTabPanel from "./TabPanels/SecurityTabPanel";
+import { useTranslation } from "react-i18next";
 function ProfileNavigation({ formik, currentUser }: any) {
+  const { t } = useTranslation();
   const links = ["Account Details", "Account Security", "Preferences"];
 
   return (
-    <Tabs variant={"unstyled"} maxW="600px">
+    <Tabs variant={"unstyled"} w="fit-content" maxW="100%">
       <TabList
         display={"flex"}
         borderBottom={`1px solid ${Colors["Greyish-Blue"]}`}
         pt=".5rem"
         gap="1rem"
         justifyContent={"space-between"}
+        minW={"fit-content"}
       >
         {links.map((link) => (
           <Tab
@@ -21,10 +24,10 @@ function ProfileNavigation({ formik, currentUser }: any) {
             px="0"
             color={Colors["Greyish-Blue"]}
             _selected={{ color: "#FFF" }}
-            fontSize={["1rem", "1.3rem"]}
+            fontSize={["0.8rem", "1rem", "1.2rem"]}
             key={link}
           >
-            {link}
+            {t(link)}
           </Tab>
         ))}
       </TabList>

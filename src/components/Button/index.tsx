@@ -1,7 +1,10 @@
 import { Button } from "@chakra-ui/react";
 import Colors from "../../Colors.json";
+import { useTranslation } from "react-i18next";
 type buttonType = { children: string; onClick: any; bg?: string };
 function index({ children, onClick, bg }: buttonType) {
+  const { t } = useTranslation();
+
   return (
     <Button
       w="100%"
@@ -14,7 +17,7 @@ function index({ children, onClick, bg }: buttonType) {
       fontWeight={"300"}
       onClick={onClick}
     >
-      {children}
+      {t(children)}
     </Button>
   );
 }
