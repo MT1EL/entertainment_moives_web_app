@@ -40,7 +40,6 @@ function PreferencesTabPanel({ currentUser }: any) {
       <WarningModal
         isOpen={isOpen}
         onClose={onClose}
-        currentUser={currentUser}
         handleDelete={handleDelete}
       />
       <ProfileInfo currentUser={currentUser} />

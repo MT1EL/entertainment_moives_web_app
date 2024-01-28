@@ -25,7 +25,7 @@ const PhoneLinkModal = ({
   isOpen: boolean;
   onClose: () => void;
 }) => {
-  const [user, setUser] = useState<firebase.User | string>("");
+  const [user, setUser] = useState<any>("");
   const [page, setPage] = useState<number>(1);
   const [phone, setPhone] = useState<string>("");
   const [code, setCode] = useState<string>("");

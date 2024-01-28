@@ -1,6 +1,16 @@
 import firebase from "firebase/compat/app";
-import { FormikErrors, FormikProps, FormikValues } from "formik";
-import React from "react";
+import { FormikErrors, FormikProps, FormikTouched, FormikValues } from "formik";
+import React, {
+  ChangeEventHandler,
+  FocusEventHandler,
+  FormEvent,
+  MouseEventHandler,
+} from "react";
+import {
+  QueryObserverResult,
+  RefetchOptions,
+  RefetchQueryFilters,
+} from "react-query";
 
 export type MediaItem = {
   category: string;
@@ -31,19 +41,24 @@ export type UserType = {
 export type InputType = {
   icon?: boolean;
   placeholder: string;
-  setFunction?: React.ChangeEvent;
-  handleBlur?: React.FocusEvent;
+  setFunction?: ChangeEventHandler<HTMLInputElement>;
+  handleBlur?: FocusEventHandler<HTMLInputElement>;
   name: string;
   type: string;
   disabled?: boolean;
-  error?: string | null;
-  touched?: boolean;
+  error?:
+    | string
+    | string[]
+    | FormikErrors<any>
+    | FormikErrors<any>[]
+    | undefined;
+  touched?: boolean | FormikTouched<any> | FormikTouched<any>[] | undefined;
   handleSubmit?: React.FormEvent;
 };
 
 export type ButtonType = {
   children: string;
-  onClick: React.MouseEventHandler;
+  onClick: (e?: FormEvent<HTMLFormElement> | undefined) => void;
   bg?: string;
 };
 
@@ -100,7 +115,7 @@ export type AuthenticationLayoutProps = {
     password: string;
     repeatPassword: string;
   }>;
-  formik: FormikProps<FormikValues>;
+  formik: FormikProps<FormikValues> | any;
 };
 
 export type PageLayoutType = {
@@ -109,5 +124,7 @@ export type PageLayoutType = {
   data: MediaItem[];
   bookMarkedMovies: MediaItem[];
   id: string;
-  refresh: () => Promise<void>;
+  refresh: <TPageData>(
+    options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+  ) => Promise<QueryObserverResult<any, unknown>>;
 };

@@ -19,7 +19,10 @@ const useRegister = async (
 ) => {
   try {
     const user = await createUserWithEmailAndPassword(auth, email, password);
-    await updateAuthUser({ username });
+    await updateAuthUser({
+      username,
+      profileImage: "",
+    });
     addUser(user.user.uid);
     return user;
   } catch (error) {

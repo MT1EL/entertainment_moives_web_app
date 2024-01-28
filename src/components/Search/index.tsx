@@ -39,7 +39,7 @@ function index({
           w={["1.5rem", "2rem", "2rem"]}
         />
       )}
-      <FormControl isInvalid={error && touched}>
+      <FormControl isInvalid={(error as undefined) && (touched as boolean)}>
         <InputGroup h={["24px", "32px"]}>
           <InputLeftAddon
             bg="transparent"

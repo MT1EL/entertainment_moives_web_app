@@ -94,8 +94,16 @@ function ProfileLayout({ formik, data }: any) {
               setFunction={formik.handleChange}
               handleBlur={formik.handleBlur}
               placeholder={
-                data[inputNameTranslator[input] as any]
-                  ? data[inputNameTranslator[input]]
+                data[
+                  inputNameTranslator[
+                    input as keyof typeof inputNameTranslator
+                  ] as any
+                ]
+                  ? data[
+                      inputNameTranslator[
+                        input as keyof typeof inputNameTranslator
+                      ]
+                    ]
                   : input
               }
               type={passwordTypes.includes(input) ? "password" : "text"}
