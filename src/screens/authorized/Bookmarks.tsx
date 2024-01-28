@@ -5,9 +5,8 @@ import PageLayout from "../../layouts/PageLayout";
 type BookMarksType = {
   id: string;
   keyWord: string;
-  user: any;
 };
-function Bookmarks({ id, keyWord, user }: BookMarksType) {
+function Bookmarks({ id, keyWord }: BookMarksType) {
   const { data, refetch } = useQuery("USER_BOOKMARKED", () => getUser(id));
   if (!data) {
     return <Spinner />;
