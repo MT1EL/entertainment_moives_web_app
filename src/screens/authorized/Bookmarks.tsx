@@ -28,7 +28,6 @@ function Bookmarks({ id, keyWord, user }: BookMarksType) {
       bookMarkedMovies={data.bookMarkedMovies}
       id={id}
       refresh={refetch}
-      user={user}
     />
   );
 }
