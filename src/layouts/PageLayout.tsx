@@ -50,7 +50,7 @@ function PageLayout({
                 key={movie.title}
                 bookMarkHandler={() => {
                   updateBookMark(bookMarkedMovies, id, movie)
-                    .then((res) => refresh())
+                    .then(() => refresh())
                     .catch((err) => err);
                 }}
                 bookmarked={

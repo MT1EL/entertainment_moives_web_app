@@ -24,7 +24,6 @@ function App() {
       console.log(values);
     },
   });
-  console.log(user);
   useEffect(() => {
     const subscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
