@@ -17,12 +17,15 @@ import Text from "../typography";
 import Colors from "../../Colors.json";
 import { useState } from "react";
 import { phoneAuthentication } from "../../hooks/authentication";
+import { auth } from "../../../firebase";
 const PhoneLinkModal = ({
   isOpen,
   onClose,
+  setUpdatedUser,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  setUpdatedUser: any;
 }) => {
   const [user, setUser] = useState<any>("");
   const [page, setPage] = useState<number>(1);
@@ -46,10 +49,13 @@ const PhoneLinkModal = ({
       setPage(page + 1);
     }
   };
-
+  console.log(user);
   const confirmOTP = () => {
     console.log("Confirming");
-    user.confirm(code);
+    user
+      .confirm(code)
+      .then((res) => setUpdatedUser(auth.currentUser))
+      .catch((err) => console.log(err));
     onClose();
   };
 

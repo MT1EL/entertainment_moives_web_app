@@ -56,7 +56,11 @@ function DetailsTabPanel({ currentUser }: any) {
 
   return (
     <TabPanel gap="1rem" display="flex" flexDir={"column"} p="0">
-      <PhoneLinkModal isOpen={isOpen} onClose={onClose} />
+      <PhoneLinkModal
+        isOpen={isOpen}
+        onClose={onClose}
+        setUpdatedUser={setUpdatedUser}
+      />
       <ProfileInfo currentUser={updatedUser ? updatedUser : currentUser} />
 
       <ProfileLayout
@@ -64,7 +68,7 @@ function DetailsTabPanel({ currentUser }: any) {
         data={updatedUser ? updatedUser : currentUser}
       />
       {!currentUser.phoneNumber && (
-        <Button onClick={onOpen}>Change phone number</Button>
+        <Button onClick={onOpen}>Add phone number</Button>
       )}
       <Button onClick={formik.handleSubmit}>Update Your Profile</Button>
     </TabPanel>
