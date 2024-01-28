@@ -19,7 +19,8 @@ const useRegister = async (
     const user = await createUserWithEmailAndPassword(auth, email, password);
     await updateAuthUser({
       username,
-      profileImage: "",
+      profileImage:
+        "https://firebasestorage.googleapis.com/v0/b/entertainment-movies-app.appspot.com/o/profileimage%2Fdefault_avatar.png?alt=media&token=09f04ded-2414-4c5b-a64e-b73f373c3dfe",
     });
     addUser(user.user.uid);
     return user;
