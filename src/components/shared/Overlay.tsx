@@ -6,7 +6,7 @@ import Play from "../Button/Play";
 import { useState } from "react";
 import { OverlayType } from "../../../types";
 import { useTranslation } from "react-i18next";
-function Overlay({ trending, handleClick, bookmarked, user }: OverlayType) {
+function Overlay({ trending, handleClick, bookmarked, id }: OverlayType) {
   const { t } = useTranslation();
   const toast = useToast();
   const [localBookmarked, setLocalBookmarked] = useState(bookmarked);
@@ -40,7 +40,7 @@ function Overlay({ trending, handleClick, bookmarked, user }: OverlayType) {
         justifyContent={"center"}
         cursor={"pointer"}
         onClick={(e) => {
-          if (user) {
+          if (id) {
             handleClick(e);
             setLocalBookmarked(!localBookmarked);
           } else {

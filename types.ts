@@ -56,14 +56,14 @@ export type MovieBannerType = {
   data: MediaItem;
   bookMarkHandler: React.MouseEventHandler;
   bookmarked: boolean;
-  user: any;
+  id: string;
 };
 
 export type OverlayType = {
   handleClick: React.MouseEventHandler;
   trending: boolean;
   bookmarked?: boolean;
-  user: any;
+  id: any;
 };
 
 export type TrendingCarouselType = {
@@ -113,5 +113,4 @@ export type PageLayoutType = {
   refresh: <TPageData>(
     options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
   ) => Promise<QueryObserverResult<any, unknown>>;
-  user?: any;
 };

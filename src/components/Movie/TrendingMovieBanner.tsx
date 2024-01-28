@@ -9,6 +9,7 @@ function TrendingMovieBanner({
   data,
   bookMarkHandler,
   bookmarked,
+  id,
 }: MovieBannerType) {
   const { thumbnail, title, year, category, rating } = data;
   const { t } = useTranslation();
@@ -37,6 +38,7 @@ function TrendingMovieBanner({
           trending
           handleClick={bookMarkHandler}
           bookmarked={bookmarked}
+          id={id}
         />
       </Box>
       <Flex

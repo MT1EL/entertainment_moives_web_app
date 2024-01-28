@@ -45,6 +45,7 @@ function TrendingCarousel({
         {data.map((movie: MediaItem) => (
           <SwiperSlide key={movie.title}>
             <TrendingMovieBanner
+              id={id}
               data={movie}
               bookMarkHandler={() => {
                 updateBookMark(bookMarkedMovies, id, movie)

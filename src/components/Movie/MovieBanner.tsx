@@ -8,7 +8,7 @@ function MovieBanner({
   data,
   bookMarkHandler,
   bookmarked,
-  user,
+  id,
 }: MovieBannerType) {
   const { thumbnail, title, year, category, rating } = data;
   const { t } = useTranslation();
@@ -31,7 +31,7 @@ function MovieBanner({
           trending={false}
           handleClick={bookMarkHandler}
           bookmarked={bookmarked}
-          user={user}
+          id={id}
         />
       </Box>
       <Flex flexDir={"column"} gap="5px" marginTop={"0.5rem"}>
