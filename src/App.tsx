@@ -2,12 +2,7 @@ import { auth } from "../firebase";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import firebase from "firebase/compat/app";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./screens/authorized/Home.tsx";
 import Register from "./screens/unauthorized/Register.tsx";
 import Login from "./screens/unauthorized/Login.tsx";
@@ -23,11 +18,14 @@ import Profile from "./screens/authorized/Profile.tsx";
 import { useFormik } from "formik";
 
 function App() {
-  const [user, setUser] = useState<boolean | firebase.User | string>("false");
+  const [user, setUser] = useState<any>("false");
   const formik = useFormik({
     initialValues: { keyword: "" },
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      console.log(values);
+    },
   });
+  console.log(user);
   useEffect(() => {
     const subscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
