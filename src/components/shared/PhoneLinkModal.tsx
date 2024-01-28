@@ -54,7 +54,7 @@ const PhoneLinkModal = ({
     console.log("Confirming");
     user
       .confirm(code)
-      .then((res) => setUpdatedUser(auth.currentUser))
+      .then(() => setUpdatedUser(auth.currentUser))
       .catch((err) => console.log(err));
     onClose();
   };
