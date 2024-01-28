@@ -17,11 +17,18 @@ import Text from "../typography";
 import Colors from "../../Colors.json";
 import { useState } from "react";
 import { phoneAuthentication } from "../../hooks/authentication";
-const PhoneLinkModal = ({ isOpen, onClose }: any) => {
-  const [user, setUser] = useState<any>("");
-  const [page, setPage] = useState(1);
-  const [phone, setPhone] = useState("");
-  const [code, setCode] = useState("");
+import firebase from "firebase/compat/app";
+const PhoneLinkModal = ({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
+  const [user, setUser] = useState<firebase.User | string>("");
+  const [page, setPage] = useState<number>(1);
+  const [phone, setPhone] = useState<string>("");
+  const [code, setCode] = useState<string>("");
 
   const handlePageChange = () => {
     if (page === 2) {

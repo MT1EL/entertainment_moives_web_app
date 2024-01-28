@@ -1,7 +1,6 @@
 import { Box, Flex, Img } from "@chakra-ui/react";
 import Text from "../typography/";
 import Colors from "../../Colors.json";
-
 function ProfileInfo({ currentUser }: any) {
   return (
     <Box mt="2rem">

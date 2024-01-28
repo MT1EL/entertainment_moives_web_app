@@ -9,6 +9,7 @@ import {
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
 import { addUser, getUser } from "./user";
+import firebase from "firebase/compat/app";
 
 // Register a user
 const useRegister = async (
@@ -29,15 +30,18 @@ const useRegister = async (
 const useLogin = (
   email: string,
   password: string,
-  handleSucces: any,
-  handleErr: any
+  handleSucces: () => void,
+  handleErr: () => void
 ) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then(handleSucces)
     .catch(handleErr);
 };
 
-const updateAuthUser = async (updatedUser: any) => {
+const updateAuthUser = async (updatedUser: {
+  profileImage: string;
+  username: string;
+}) => {
   const avatar =
     "https://firebasestorage.googleapis.com/v0/b/entertainment-movies-app.appspot.com/o/profileimage%2Fdefault_avatar.png?alt=media&token=18236645-98e3-4119-a4ed-72df70b50d13";
   const user = auth.currentUser;

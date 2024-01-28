@@ -1,6 +1,6 @@
 import { MediaItem, UserType } from "./../../types";
 import { doc, getDoc, updateDoc, setDoc, deleteDoc } from "firebase/firestore";
-import { auth, database } from "../../firebase";
+import { database } from "../../firebase";
 import {
   EmailAuthProvider,
   reauthenticateWithCredential,

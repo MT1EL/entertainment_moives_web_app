@@ -1,4 +1,6 @@
+import firebase from "firebase/compat/app";
 import { FormikErrors, FormikProps, FormikValues } from "formik";
+import React from "react";
 
 export type MediaItem = {
   category: string;
@@ -21,61 +23,47 @@ export type MediaItem = {
   year: number;
 };
 
-// export type UserType = {
-//   data(): any;
-//   bookmarkedMovies: MediaItem[];
-//   email: string;
-//   fullName: string;
-//   name: string;
-//   profileImage: string;
-//   surname: string;
-//   username: string;
-// };
-
 export type UserType = {
-  data(): any;
+  data(): firebase.User;
   bookmarkedMovies: MediaItem[];
-  email: string;
-  fullName: string;
-  name: string;
-  profileImage: string;
-  surname: string;
-  username: string;
-  phoneNumber: number;
 };
 
 export type InputType = {
   icon?: boolean;
   placeholder: string;
-  setFunction?: any;
-  handleBlur?: any;
+  setFunction?: React.ChangeEvent;
+  handleBlur?: React.FocusEvent;
   name: string;
   type: string;
   disabled?: boolean;
   error?: string | null;
   touched?: boolean;
-  handleSubmit?: any;
+  handleSubmit?: React.FormEvent;
 };
 
-export type ButtonType = { children: string; onClick: any; bg?: string };
+export type ButtonType = {
+  children: string;
+  onClick: React.MouseEventHandler;
+  bg?: string;
+};
 
 export type MovieBannerType = {
   data: MediaItem;
-  bookMarkHandler: any;
+  bookMarkHandler: React.MouseEventHandler;
   bookmarked: boolean;
 };
 
 export type OverlayType = {
-  handleClick: any;
+  handleClick: React.MouseEventHandler;
   trending: boolean;
   bookmarked?: boolean;
 };
 
 export type TrendingCarouselType = {
-  data: any;
+  data: MediaItem[];
   bookMarkedMovies: MediaItem[];
   id: string;
-  refresh: any;
+  refresh: () => Promise<void>;
 };
 
 type TextStyles = {
@@ -96,12 +84,17 @@ export type TextType = {
 
 export type AuthenticationLayoutProps = {
   label: string;
-  inputs: { label: string; name: string; setFunction: any; type: string }[];
+  inputs: {
+    label: string;
+    name: string;
+    setFunction: React.Dispatch<React.SetStateAction<any>>;
+    type: string;
+  }[];
   buttonLabel: string;
   footer_paragraph: string;
   footer_link: string;
   footer_link_href: string;
-  onSubmit: any;
+  onSubmit: React.FormEvent;
   error?: FormikErrors<{
     email: string;
     password: string;
@@ -116,5 +109,5 @@ export type PageLayoutType = {
   data: MediaItem[];
   bookMarkedMovies: MediaItem[];
   id: string;
-  refresh: any;
+  refresh: () => Promise<void>;
 };

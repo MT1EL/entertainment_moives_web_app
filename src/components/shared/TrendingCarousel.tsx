@@ -39,6 +39,7 @@ function TrendingCarousel({
     spaceBetween: 10,
     // Add more configuration options as needed
   };
+  console.log(data);
   return (
     <Box>
       <Swiper {...swiperParams} style={{ maxWidth: "calc(100vw - 32px)" }}>

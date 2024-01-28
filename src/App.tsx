@@ -1,6 +1,7 @@
 import { auth } from "../firebase";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import firebase from "firebase/compat/app";
 import {
   BrowserRouter as Router,
   Routes,
@@ -22,7 +23,7 @@ import Profile from "./screens/authorized/Profile.tsx";
 import { useFormik } from "formik";
 
 function App() {
-  const [user, setUser] = useState<boolean | any>("false");
+  const [user, setUser] = useState<boolean | firebase.User | string>("false");
   const formik = useFormik({
     initialValues: { keyword: "" },
     onSubmit: (values) => {},

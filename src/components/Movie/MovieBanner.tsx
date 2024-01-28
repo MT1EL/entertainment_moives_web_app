@@ -1,7 +1,7 @@
 import { Box, Flex, Image } from "@chakra-ui/react";
 import Text from "../typography/";
 import Oval from "../Oval/";
-import { MediaItem, MovieBannerType } from "../../../types";
+import { MovieBannerType } from "../../../types";
 import Overlay from "../shared/Overlay";
 import { useTranslation } from "react-i18next";
 function MovieBanner({ data, bookMarkHandler, bookmarked }: MovieBannerType) {

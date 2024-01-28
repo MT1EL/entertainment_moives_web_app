@@ -11,7 +11,15 @@ import {
 import Button from "../Button/";
 import Text from "../typography";
 import Colors from "../../Colors.json";
-const WarningModal = ({ isOpen, onClose, handleDelete }: any) => {
+const WarningModal = ({
+  isOpen,
+  onClose,
+  handleDelete,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  handleDelete: () => void;
+}) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
