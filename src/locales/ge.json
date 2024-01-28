@@ -66,5 +66,13 @@
   "Phone Number": "მობილურის ნომერი",
   "Old password": "ძველი პაროლი",
   "New password": "ახალი პაროლი",
-  "Repeat new password": "გაიმეორე ახალი პაროლი"
+  "Repeat new password": "გაიმეორე ახალი პაროლი",
+  "You have not bookmarked any movie or tv series yet": "თქვენ ჯერ არ მოგინიშნიათ არც ერთი ფილმი ან სერიალი",
+  "Loged in Successful": "თქვენ წარმატებით შეხვედით ექაუნთში",
+  "Login Failed": "Სისტემაში შესვლა ვერ მოხერხდა",
+  "Wrong credentials entered.": "არასწორი ელ.ფოსტა ან პაროლი",
+  "Registered Successful": "გილოცავთ, თქვენ წარმატებით დარეგისტრირდით",
+  "Registered Failed": "რეგისტრაცია ვერ მოხერხდა",
+  "Profile updated successfully": "პროფილი წარმატებით განახლდა",
+  "Profile update failed": "პროფილის განახლება ვერ მოხერხდა"
 }

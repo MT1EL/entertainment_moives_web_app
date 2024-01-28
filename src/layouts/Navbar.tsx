@@ -7,13 +7,16 @@ import tv_series from "../assets/icon-nav-tv-series.svg";
 import bookmark from "../assets/icon-nav-bookmark.svg";
 import avatar from "../assets/default_avatar.png";
 function Navbar({ user }: any) {
-  let navbarLinks = [
+  let unauthorizedLinks = [
     { icon: home, href: "/" },
     { icon: movies, href: "/movies" },
     { icon: tv_series, href: "/tv_series" },
+  ];
+  let authorizedNavbarLinks = [
+    ...unauthorizedLinks,
     { icon: bookmark, href: "/bookmarks" },
   ];
-
+  let navbarLinks = user ? authorizedNavbarLinks : unauthorizedLinks;
   return (
     <Flex
       p="1.75rem"

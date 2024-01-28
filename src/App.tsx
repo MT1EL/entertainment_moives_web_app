@@ -1,7 +1,12 @@
 import { auth } from "../firebase";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom";
 import Home from "./screens/authorized/Home.tsx";
 import Register from "./screens/unauthorized/Register.tsx";
 import Login from "./screens/unauthorized/Login.tsx";
@@ -14,10 +19,14 @@ import Container from "./layouts/Container.tsx";
 import Navbar from "./layouts/Navbar.tsx";
 import Input from "./components/Search/index.tsx";
 import Profile from "./screens/authorized/Profile.tsx";
+import { useFormik } from "formik";
 
 function App() {
   const [user, setUser] = useState<boolean | any>("false");
-
+  const formik = useFormik({
+    initialValues: { keyword: "" },
+    onSubmit: (values) => {},
+  });
   useEffect(() => {
     const subscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -28,6 +37,7 @@ function App() {
         setUser(user);
       }
     });
+
     return subscribe;
   }, []);
   return (
@@ -49,35 +59,50 @@ function App() {
             </Box>
 
             <Container>
-              <Box display={user ? "block" : "none"}>
-                <Input
-                  placeholder={"Search for Movies or Tv Series"}
-                  icon
-                  name={"movies"}
-                  type="text"
-                />
-              </Box>
-
+              <Input
+                placeholder={"Search for Movies or Tv Series"}
+                icon
+                name={"keyword"}
+                type="text"
+                setFunction={formik.handleChange}
+                handleSubmit={formik.handleSubmit}
+              />
               <Router>
                 <Routes>
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />
-                  <Route path="/" element={<Home id={user?.uid} />} />
-                  <Route path="/movies" element={<Movies id={user?.uid} />} />
                   <Route
-                    path="/tv_series"
-                    element={<TvSeries id={user?.uid} />}
-                  />
-                  <Route
-                    path="/bookmarks"
+                    path="/"
                     element={
-                      user === undefined || user === null ? (
-                        <h1>Please Log in</h1>
-                      ) : (
-                        <Bookmarks id={user?.uid} />
-                      )
+                      <Home id={user?.uid} keyWord={formik.values.keyword} />
                     }
                   />
+                  <Route
+                    path="/movies"
+                    element={
+                      <Movies id={user?.uid} keyWord={formik.values.keyword} />
+                    }
+                  />
+                  <Route
+                    path="/tv_series"
+                    element={
+                      <TvSeries
+                        id={user?.uid}
+                        keyWord={formik.values.keyword}
+                      />
+                    }
+                  />
+                  {user && (
+                    <Route
+                      path="/bookmarks"
+                      element={
+                        <Bookmarks
+                          id={user?.uid}
+                          keyWord={formik.values.keyword}
+                        />
+                      }
+                    />
+                  )}
                   <Route
                     path="/profile"
                     element={<Profile currentUser={user} />}

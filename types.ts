@@ -54,6 +54,7 @@ export type InputType = {
   disabled?: boolean;
   error?: string | null;
   touched?: boolean;
+  handleSubmit?: any;
 };
 
 export type ButtonType = { children: string; onClick: any; bg?: string };

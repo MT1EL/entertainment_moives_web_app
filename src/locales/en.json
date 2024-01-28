@@ -65,5 +65,13 @@
   "Phone Number": "Phone Number",
   "Old password": "Old password",
   "New password": "New password",
-  "Repeat new password": "Repeat new password"
+  "Repeat new password": "Repeat new password",
+  "You have not bookmarked any movie or tv series yet": "You have not bookmarked any movie or tv series yet",
+  "Loged in Successful": "Loged in Successful",
+  "Login Failed": "Login Failed",
+  "Wrong credentials entered.": "Wrong credentials entered.",
+  "Registered Successful": "Registered Successful",
+  "Registered Failed": "Registered Failed",
+  "Profile updated successfully": "Profile updated successfully",
+  "Profile update failed": "Profile update failed"
 }

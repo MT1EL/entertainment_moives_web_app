@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
-import { addUser } from "./user";
+import { addUser, getUser } from "./user";
 
 // Register a user
 const useRegister = async (
@@ -46,7 +46,7 @@ const updateAuthUser = async (updatedUser: any) => {
       photoURL: updatedUser.profileImage ? updatedUser.profileImage : avatar,
       displayName: updatedUser.username,
     })
-      .then((res) => res)
+      .then((res) => auth.currentUser)
       .catch((error: { message: any }) => {
         console.error("Error updating custom fields:", error.message);
       });

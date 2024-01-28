@@ -13,6 +13,7 @@ export const RegisterValidationSchema = yup.object({
     .min(6, "Password must be at least 6 characters"),
   "Repeat password": yup
     .string()
+    .required()
     .oneOf([yup.ref("Password")], "Passwords must match"),
 });
 

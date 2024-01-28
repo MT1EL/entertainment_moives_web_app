@@ -1,11 +1,14 @@
-import { Flex } from "@chakra-ui/react";
+import { Flex, useToast } from "@chakra-ui/react";
 import Authentication from "../../layouts/Authentication";
 import { useRegister } from "../../hooks/authentication";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { RegisterInitialValues } from "../../formData/initialValues";
 import { RegisterValidationSchema } from "../../formData/validationSchemas";
+import { useTranslation } from "react-i18next";
 function Register() {
+  const { t } = useTranslation();
+  const toast = useToast();
   const navigate = useNavigate();
   const RegisterFormikSubmitFunction = (values: {
     Password: string;
@@ -13,9 +16,22 @@ function Register() {
     username: string;
   }) => {
     useRegister(values.email, values.Password, values.username)
-      .then((res) => navigate("/"))
+      .then((res) => {
+        navigate("/");
+        toast({
+          title: t("Registered Successful"),
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      })
       .catch((err) => {
-        console.log(err);
+        toast({
+          title: t("Registered Failed"),
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
       });
   };
   //REGISTER FORMIK

@@ -4,6 +4,7 @@ import {
   Flex,
   Divider,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import Button from "../../components/Button/";
 import ProfileInfo from "../../components/shared/ProfileInfo";
@@ -14,7 +15,10 @@ import WarningModal from "../../components/shared/WarningModal";
 import { useNavigate } from "react-router-dom";
 import { deleteUser } from "../../hooks/user";
 import i18n from "../../../i18next";
+import { useTranslation } from "react-i18next";
 function PreferencesTabPanel({ currentUser }: any) {
+  const { t } = useTranslation();
+  const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const navigate = useNavigate();
@@ -72,6 +76,13 @@ function PreferencesTabPanel({ currentUser }: any) {
         onClick={() => {
           auth.signOut();
           navigate("/");
+          toast({
+            title: t("თქვენ გამოხვედით ექაუნთიდან"),
+            status: "info",
+            duration: 5000,
+            isClosable: true,
+            position: "top",
+          });
         }}
       >
         Log out

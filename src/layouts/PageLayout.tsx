@@ -1,4 +1,4 @@
-import { Flex, Grid } from "@chakra-ui/react";
+import { Box, Flex, Grid } from "@chakra-ui/react";
 import Text from "../components/typography";
 import TrendingCarousel from "../components/shared/TrendingCarousel";
 import { PageLayoutType } from "../../types";
@@ -37,22 +37,30 @@ function PageLayout({
           columnGap={"1rem"}
           rowGap={"2rem"}
         >
-          {data.map((movie) => (
-            <MovieBanner
-              data={movie}
-              key={movie.title}
-              bookMarkHandler={() => {
-                updateBookMark(bookMarkedMovies, id, movie)
-                  .then((res) => refresh())
-                  .catch((err) => err);
-              }}
-              bookmarked={
-                bookMarkedMovies.findIndex(
-                  (bookMarkedMovie) => bookMarkedMovie.title === movie.title
-                ) > -1
-              }
-            />
-          ))}
+          {data.length === 0 ? (
+            <Box mx="auto" my="auto" alignSelf={"center"}>
+              <Text size={"hs"}>
+                You have not bookmarked any movie or tv series yet
+              </Text>
+            </Box>
+          ) : (
+            data.map((movie) => (
+              <MovieBanner
+                data={movie}
+                key={movie.title}
+                bookMarkHandler={() => {
+                  updateBookMark(bookMarkedMovies, id, movie)
+                    .then((res) => refresh())
+                    .catch((err) => err);
+                }}
+                bookmarked={
+                  bookMarkedMovies.findIndex(
+                    (bookMarkedMovie) => bookMarkedMovie.title === movie.title
+                  ) > -1
+                }
+              />
+            ))
+          )}
         </Grid>
       )}
     </Flex>

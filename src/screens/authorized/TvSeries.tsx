@@ -3,7 +3,7 @@ import { Box, Spinner } from "@chakra-ui/react";
 import { getTvSeries } from "../../hooks/data";
 import { useQuery } from "react-query";
 import { getUser } from "../../hooks/user";
-function TvSeries({ id }: { id: string }) {
+function TvSeries({ id, keyWord }: { id: string; keyWord: string }) {
   const { data: user, refetch } = useQuery("USER_BOOKMARKED", () =>
     getUser(id)
   );
@@ -17,7 +17,15 @@ function TvSeries({ id }: { id: string }) {
     <Box>
       <PageLayout
         label="TV Series"
-        data={tvSeriesData}
+        data={
+          keyWord !== ""
+            ? tvSeriesData.filter((movie) =>
+                movie.title
+                  .toLocaleLowerCase()
+                  .includes(keyWord.toLocaleLowerCase())
+              )
+            : tvSeriesData
+        }
         bookMarkedMovies={user ? user.bookMarkedMovies : []}
         id={id}
         refresh={refetch}

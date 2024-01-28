@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 import PageLayout from "../../layouts/PageLayout";
 import { getUser } from "../../hooks/user";
 
-function Movies({ id }: { id: string }) {
+function Movies({ id, keyWord }: { id: string; keyWord: string }) {
   const { data: user, refetch } = useQuery("USER_BOOKMARKED", () =>
     getUser(id)
   );
@@ -17,7 +17,15 @@ function Movies({ id }: { id: string }) {
   return (
     <PageLayout
       label="Movies"
-      data={data}
+      data={
+        keyWord !== ""
+          ? data.filter((movie) =>
+              movie.title
+                .toLocaleLowerCase()
+                .includes(keyWord.toLocaleLowerCase())
+            )
+          : data
+      }
       bookMarkedMovies={user ? user.bookMarkedMovies : []}
       id={id}
       refresh={refetch}

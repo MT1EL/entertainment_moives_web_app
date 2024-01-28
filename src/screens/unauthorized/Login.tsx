@@ -1,19 +1,39 @@
 import Authentication from "../../layouts/Authentication";
-import { Flex } from "@chakra-ui/react";
+import { Flex, useToast } from "@chakra-ui/react";
 import { useLogin } from "../../hooks/authentication";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { LoginInitialValues } from "../../formData/initialValues";
 import { LoginValidationSchema } from "../../formData/validationSchemas";
+import { useTranslation } from "react-i18next";
 function Login() {
+  const { t } = useTranslation();
+  const toast = useToast();
   const navigate = useNavigate();
   //LOGIN FORMIK SUBMIT FUNCTION
   const loginSubmitFunction = (values: { email: string; Password: string }) => {
     useLogin(
       values.email,
       values.Password,
-      () => navigate("/"),
-      () => formik.setErrors({ Password: "wrong credentials" })
+      () => {
+        navigate("/");
+        toast({
+          title: t("Loged in Successful"),
+          status: "success",
+          duration: 5000,
+          isClosable: true,
+        });
+      },
+      () => {
+        formik.setErrors({ Password: "wrong credentials" });
+        toast({
+          title: t("Login Failed"),
+          description: t("Wrong credentials entered."),
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     )
       .then((res) => res)
       .catch((err) => err);
