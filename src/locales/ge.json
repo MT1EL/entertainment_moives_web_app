@@ -75,5 +75,6 @@
   "Registered Failed": "რეგისტრაცია ვერ მოხერხდა",
   "Profile updated successfully": "პროფილი წარმატებით განახლდა",
   "Profile update failed": "პროფილის განახლება ვერ მოხერხდა",
-  "Add phone number": "დაამატე ტელეფონის ნომერი"
+  "Add phone number": "დაამატე ტელეფონის ნომერი",
+  "Please Log in to use these feature": "შედით ექაუნთში, რათა შეძლოთ ფილმის დამახსოვრება"
 }

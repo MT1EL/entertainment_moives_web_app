@@ -1,11 +1,14 @@
-import { Flex, Img } from "@chakra-ui/react";
+import { Flex, Img, useToast } from "@chakra-ui/react";
 import Colors from "../../Colors.json";
 import bookmarkEmpty from "../../assets/icon-bookmark-empty.svg";
 import bookmarkedFull from "../../assets/icon-bookmark-full.svg";
 import Play from "../Button/Play";
 import { useState } from "react";
 import { OverlayType } from "../../../types";
-function Overlay({ trending, handleClick, bookmarked }: OverlayType) {
+import { useTranslation } from "react-i18next";
+function Overlay({ trending, handleClick, bookmarked, user }: OverlayType) {
+  const { t } = useTranslation();
+  const toast = useToast();
   const [localBookmarked, setLocalBookmarked] = useState(bookmarked);
   return (
     <Flex
@@ -37,8 +40,18 @@ function Overlay({ trending, handleClick, bookmarked }: OverlayType) {
         justifyContent={"center"}
         cursor={"pointer"}
         onClick={(e) => {
-          handleClick(e);
-          setLocalBookmarked(!localBookmarked);
+          if (user) {
+            handleClick(e);
+            setLocalBookmarked(!localBookmarked);
+          } else {
+            toast({
+              title: t("Please Log in to use these feature"),
+              status: "info",
+              duration: 5000,
+              isClosable: true,
+              position: "top-right",
+            });
+          }
         }}
       >
         <Img

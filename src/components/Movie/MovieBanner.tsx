@@ -4,7 +4,12 @@ import Oval from "../Oval/";
 import { MovieBannerType } from "../../../types";
 import Overlay from "../shared/Overlay";
 import { useTranslation } from "react-i18next";
-function MovieBanner({ data, bookMarkHandler, bookmarked }: MovieBannerType) {
+function MovieBanner({
+  data,
+  bookMarkHandler,
+  bookmarked,
+  user,
+}: MovieBannerType) {
   const { thumbnail, title, year, category, rating } = data;
   const { t } = useTranslation();
 
@@ -26,6 +31,7 @@ function MovieBanner({ data, bookMarkHandler, bookmarked }: MovieBannerType) {
           trending={false}
           handleClick={bookMarkHandler}
           bookmarked={bookmarked}
+          user={user}
         />
       </Box>
       <Flex flexDir={"column"} gap="5px" marginTop={"0.5rem"}>

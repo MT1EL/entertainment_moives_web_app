@@ -2,8 +2,12 @@ import { useQuery } from "react-query";
 import { getUser } from "../../hooks/user";
 import { Spinner } from "@chakra-ui/react";
 import PageLayout from "../../layouts/PageLayout";
-
-function Bookmarks({ id, keyWord }: { id: string; keyWord: string }) {
+type BookMarksType = {
+  id: string;
+  keyWord: string;
+  user: any;
+};
+function Bookmarks({ id, keyWord, user }: BookMarksType) {
   const { data, refetch } = useQuery("USER_BOOKMARKED", () => getUser(id));
   if (!data) {
     return <Spinner />;
@@ -24,6 +28,7 @@ function Bookmarks({ id, keyWord }: { id: string; keyWord: string }) {
       bookMarkedMovies={data.bookMarkedMovies}
       id={id}
       refresh={refetch}
+      user={user}
     />
   );
 }

@@ -96,6 +96,7 @@ function App() {
                         <Bookmarks
                           id={user?.uid}
                           keyWord={formik.values.keyword}
+                          user={user}
                         />
                       }
                     />

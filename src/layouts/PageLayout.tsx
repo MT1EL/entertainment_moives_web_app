@@ -11,6 +11,7 @@ function PageLayout({
   bookMarkedMovies,
   refresh,
   id,
+  user,
 }: PageLayoutType) {
   return (
     <Flex
@@ -58,6 +59,7 @@ function PageLayout({
                     (bookMarkedMovie) => bookMarkedMovie.title === movie.title
                   ) > -1
                 }
+                user={user}
               />
             ))
           )}
