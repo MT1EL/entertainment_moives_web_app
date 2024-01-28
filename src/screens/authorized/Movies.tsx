@@ -1,5 +1,5 @@
 import { getMovies } from "../../hooks/data";
-import { Box, Spinner } from "@chakra-ui/react";
+import { Spinner } from "@chakra-ui/react";
 import { useQuery } from "react-query";
 import PageLayout from "../../layouts/PageLayout";
 import { getUser } from "../../hooks/user";

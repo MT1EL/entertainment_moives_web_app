@@ -1,4 +1,4 @@
-import { Flex, FormControl, FormLabel } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import Colors from "../Colors.json";
 import Text from "../components/typography";
 import Input from "../components/Search/index";

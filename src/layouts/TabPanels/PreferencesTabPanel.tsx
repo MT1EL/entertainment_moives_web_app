@@ -92,6 +92,3 @@ function PreferencesTabPanel({ currentUser }: any) {
 }
 
 export default PreferencesTabPanel;
-function navigate(arg0: string) {
-  throw new Error("Function not implemented.");
-}

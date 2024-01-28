@@ -16,7 +16,7 @@ function Register() {
     username: string;
   }) => {
     useRegister(values.email, values.Password, values.username)
-      .then((res) => {
+      .then(() => {
         navigate("/");
         toast({
           title: t("Registered Successful"),
@@ -25,7 +25,7 @@ function Register() {
           isClosable: true,
         });
       })
-      .catch((err) => {
+      .catch(() => {
         toast({
           title: t("Registered Failed"),
           status: "error",

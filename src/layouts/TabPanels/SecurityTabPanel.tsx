@@ -16,7 +16,7 @@ function DetailsTabPanel({ currentUser }: any) {
       values["Old password"],
       values["New password"]
     )
-      ?.then((res) =>
+      ?.then(() =>
         toast({
           title: t("Profile updated successfully"),
           status: "success",
@@ -24,7 +24,7 @@ function DetailsTabPanel({ currentUser }: any) {
           isClosable: true,
         })
       )
-      .catch((err) =>
+      .catch(() =>
         toast({
           title: t("Profile update failed"),
           status: "error",

@@ -17,7 +17,6 @@ import Text from "../typography";
 import Colors from "../../Colors.json";
 import { useState } from "react";
 import { phoneAuthentication } from "../../hooks/authentication";
-import firebase from "firebase/compat/app";
 const PhoneLinkModal = ({
   isOpen,
   onClose,

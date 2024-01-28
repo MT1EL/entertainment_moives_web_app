@@ -36,8 +36,8 @@ function Overlay({ trending, handleClick, bookmarked }: OverlayType) {
         alignItems={"center"}
         justifyContent={"center"}
         cursor={"pointer"}
-        onClick={() => {
-          handleClick();
+        onClick={(e) => {
+          handleClick(e);
           setLocalBookmarked(!localBookmarked);
         }}
       >

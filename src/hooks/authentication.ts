@@ -4,12 +4,10 @@ import {
   createUserWithEmailAndPassword,
   linkWithPhoneNumber,
   signInWithEmailAndPassword,
-  signInWithPhoneNumber,
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import { updateProfile } from "firebase/auth";
-import { addUser, getUser } from "./user";
-import firebase from "firebase/compat/app";
+import { addUser } from "./user";
 
 // Register a user
 const useRegister = async (
@@ -53,7 +51,7 @@ const updateAuthUser = async (updatedUser: {
       photoURL: updatedUser.profileImage ? updatedUser.profileImage : avatar,
       displayName: updatedUser.username,
     })
-      .then((res) => auth.currentUser)
+      .then(() => auth.currentUser)
       .catch((error: { message: any }) => {
         console.error("Error updating custom fields:", error.message);
       });

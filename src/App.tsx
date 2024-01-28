@@ -1,7 +1,6 @@
 import { auth } from "../firebase";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import firebase from "firebase/compat/app";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./screens/authorized/Home.tsx";
 import Register from "./screens/unauthorized/Register.tsx";

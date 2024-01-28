@@ -1,11 +1,6 @@
 import firebase from "firebase/compat/app";
 import { FormikErrors, FormikProps, FormikTouched, FormikValues } from "formik";
-import React, {
-  ChangeEventHandler,
-  FocusEventHandler,
-  FormEvent,
-  MouseEventHandler,
-} from "react";
+import React, { ChangeEventHandler, FocusEventHandler } from "react";
 import {
   QueryObserverResult,
   RefetchOptions,
@@ -46,19 +41,14 @@ export type InputType = {
   name: string;
   type: string;
   disabled?: boolean;
-  error?:
-    | string
-    | string[]
-    | FormikErrors<any>
-    | FormikErrors<any>[]
-    | undefined;
+  error?: any;
   touched?: boolean | FormikTouched<any> | FormikTouched<any>[] | undefined;
-  handleSubmit?: React.FormEvent;
+  handleSubmit?: React.FormEvent | any;
 };
 
 export type ButtonType = {
   children: string;
-  onClick: (e?: FormEvent<HTMLFormElement> | undefined) => void;
+  onClick: any;
   bg?: string;
 };
 
@@ -78,7 +68,7 @@ export type TrendingCarouselType = {
   data: MediaItem[];
   bookMarkedMovies: MediaItem[];
   id: string;
-  refresh: () => Promise<void>;
+  refresh: any;
 };
 
 type TextStyles = {
@@ -99,17 +89,11 @@ export type TextType = {
 
 export type AuthenticationLayoutProps = {
   label: string;
-  inputs: {
-    label: string;
-    name: string;
-    setFunction: React.Dispatch<React.SetStateAction<any>>;
-    type: string;
-  }[];
   buttonLabel: string;
   footer_paragraph: string;
   footer_link: string;
   footer_link_href: string;
-  onSubmit: React.FormEvent;
+  onSubmit: any;
   error?: FormikErrors<{
     email: string;
     password: string;

@@ -39,7 +39,6 @@ function TrendingCarousel({
     spaceBetween: 10,
     // Add more configuration options as needed
   };
-  console.log(data);
   return (
     <Box>
       <Swiper {...swiperParams} style={{ maxWidth: "calc(100vw - 32px)" }}>
@@ -49,7 +48,7 @@ function TrendingCarousel({
               data={movie}
               bookMarkHandler={() => {
                 updateBookMark(bookMarkedMovies, id, movie)
-                  .then((res) => refresh())
+                  .then(() => refresh())
                   .catch((err) => err);
               }}
               bookmarked={
